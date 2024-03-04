@@ -1,0 +1,45 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.lastMessage {
+    color: #5E636B;
+    margin-top: 0px;
+    font-size: 10px;
+    font-weight: 200;
+    width: 140px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.profile img {
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+.lblProfileStats{
+    color: #EB2C44;
+}
+
+.spanStats{
+    color: white;
+    font-size: 13px;
+    margin-bottom: 50px;
+}
+
+.user-info {
+    color: #fff;
+    font-weight: 200;
+    font-size: 19px;    
+}

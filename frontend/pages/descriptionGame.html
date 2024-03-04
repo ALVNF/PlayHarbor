@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/descriptionGameStyle.css">
+
+    <!-- WebComponents -->
+    <script src="../webComponents/navMenu/navMenu.js"></script>
+    <script src="../webComponents/gameDescription/gameDescription.js"></script>
+    <script src="../webComponents/tag/tag.js"></script>
+    <script src="../webComponents/imageCarousel/imageCarousel.js"></script>
+    <script src="../webComponents/commentTag/commentTag.js"></script>
+    <script src="../webComponents/chat&Friends/chat&Friends.js"></script>
+    <script src="../webComponents/userChatItem/userChatItem.js"></script>
+    <script src="../webComponents/friendItem/friendItem.js"></script>
+
+    <!-- Backend Functionalities -->
+    <script src="../js/backendCallers.js"></script>
+    <script src="../js/frontendViewer.js"></script>
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
+
+</head>
+
+<body id="body" onload="loadData()">
+
+    <header class="navbar">
+        <nav-menu></nav-menu>
+    </header>
+
+    <main id="main">
+        <section class="leftSection">
+
+            <game-description id="gameDescriptionTag"></game-description>
+            <image-carousel id="gameImages"></image-carousel>
+            <h2>Community Reviews</h2>
+            <div class="reviewsContainer" id="reviewList">
+                
+            </div>
+        </section>
+
+        <section class="rightSection">
+            <chatfriends-menu></chatfriends-menu>
+        </section>
+    </main>
+
+</body>
+
+</html>

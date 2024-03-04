@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-left: 60px;
+    color: white;
+}
+
+.gameCober{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px;
+}
+
+.gameCober img{
+    width: 200px;
+    height: 300px;
+}
+
+.gameCober a{
+    height: 30px;
+    background-color: #EB2C44;
+    color: white;
+    font-size: 19px;
+    font-weight: lighter;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.gameCober a:hover{
+    background-color: #FF5A6E;
+    cursor: pointer;
+}
+
+.gameCober a:active{
+    background-color: #EB2C44;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.gameInfoContainer{
+    margin-bottom: 20px;
+}
+
+.tagList{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.gameInfoContainer h1{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.gameInfoContainer label{
+    font-size: 15px;
+    font-weight: 500;
+    color: #485D8A;
+}
+
+article{
+    width: 90%;
+}
+
+article h3{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #EB2C44;
+}
+
+article p{
+    font-size: 15px;
+    font-weight: 100;
+    line-height: 23px;
+    text-align: left;
+
+}

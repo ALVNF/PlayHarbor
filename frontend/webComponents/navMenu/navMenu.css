@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #161B21;
+    height: 65px;
+}
+
+.logo img {
+    width: 65px;
+    margin-left: 10px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.menuContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+#selectedMenuBar{
+    background-color: #EB2C44;
+    width: 130px;
+    height: 4px;
+    margin-top: 15px;
+    margin-left: 18px;
+}
+
+.menu-item {
+    font-size: 19px;
+    font-weight: 200;
+
+    color: #fff;
+    text-decoration: none;
+    padding: 0 23px;
+    
+}
+
+.menu-item img{
+    width: 18px;
+    margin-bottom: 9px;
+    margin-right: 7px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.profile img {
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.userStatsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.lblProfileStats{
+    color: #EB2C44;
+}
+
+.spanStats{
+    color: white;
+    font-size: 13px;
+}
+
+.user-info {
+    color: #fff;
+    font-weight: 200;
+    font-size: 19px;
+}
+
