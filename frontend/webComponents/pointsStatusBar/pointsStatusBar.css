@@ -9,9 +9,6 @@
 .itemsContainer{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    height: 128px;
-
 }
 
 #secondaryItemsContainer{

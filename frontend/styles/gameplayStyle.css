@@ -10,14 +10,12 @@ body {
     color: #fff;
 }
 
-
 .container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     height: 91vh;
 }
-
 
 .left-column {
     width: 95vw;
@@ -49,4 +47,40 @@ hr{
     width: 90%;
     margin-left: 10px;
     border: solid 1px #2B3137;
+}
+
+.buttonsContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.btnManager{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EB2C44;
+    border: none;
+    width: 45px;
+    height: 40px;
+    margin-right: 10px;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.btnManager:hover{
+    background-color: #FF5A6E;
+    cursor: pointer;
+}
+
+.btnManager:active{
+    background-color: #EB2C44;
+}
+
+.btnManager img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }

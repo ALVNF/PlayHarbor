@@ -8,10 +8,6 @@ function loadData(){
     loadGameImages();
 }
 
-function loadGame(){
-    loadGameScreen();
-}
-
 function loadGameScreen() {
     getJuego(nombreJuego).then((gameUrl) => {
         console.log(gameUrl);
@@ -21,12 +17,22 @@ function loadGameScreen() {
         myIframe.addEventListener("load", function() {
             myIframe.contentWindow.document.body.style.overflow = "hidden";
             setTimeout(function(){
-                console.log("Executed after 1 second");
-                console.log();
+                myIframe.contentWindow.document.getElementById('unity-canvas').style.outline = "none";
+                myIframe.contentWindow.document.getElementById('unity-canvas').focus();
+
                 myIframe.contentWindow.document.getElementById('unity-footer').style.display = "none";
             }, 1000);
         });
     });
+}
+
+function returnToMain() {
+    window.location.href = "../../";
+}
+
+function augmentScreen(){
+    var myIframe = document.getElementById('contenedorJuego');
+    myIframe.contentWindow.document.getElementById('unity-fullscreen-button').click();
 }
 
 function loadGameComments() {
