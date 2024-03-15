@@ -71,3 +71,32 @@ function getImgsJuego(nombreJuego, tipo) {
 
 
 
+function getTodosLosJuegos() {
+    return $.ajax({
+        url: '/api/todosLosJuegos',
+        method: 'GET',
+        success: function(data) {
+            console.log('Juegos:', data.juegos);
+            // Aquí puedes hacer algo con la lista de juegos, como mostrarlos en la página
+        },
+        error: function(error) {
+            console.error('Error al realizar la solicitud:', error.statusText);
+        }
+    });
+}
+
+function getJuegosPorEtiqueta(etiqueta) {
+    return $.ajax({
+        url: '/api/juegosPorEtiqueta',
+        method: 'GET',
+        data: { etiqueta: etiqueta }, // Pasa la etiqueta como parámetro en la solicitud
+        success: function(data) {
+            console.log('Juegos filtrados por etiqueta:', data.juegos);
+            // Aquí puedes hacer algo con la lista de juegos filtrados, como mostrarlos en la página
+        },
+        error: function(error) {
+            console.error('Error al realizar la solicitud:', error.statusText);
+        }
+    });
+}
+

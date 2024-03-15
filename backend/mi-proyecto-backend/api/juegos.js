@@ -68,7 +68,53 @@ router.get('/infoJuego', async (req, res) => {
         res.status(500).json({ message: 'Error al conectar con Firestore.', error: error.message });
     }
 });
+/**SI IMPLEMENTADA**/
+//Se obtienen todos los juegos y su informacion.
+router.get('/todosLosJuegos', async (req, res) => {
+    try {
+        const juegosRef = db.collection('games');
+        const snapshot = await juegosRef.get();
+        const juegos = [];
+        snapshot.forEach(doc => {
+            juegos.push({ id: doc.id, ...doc.data() });
+        });
+        res.json({ juegos });
+    } catch (error) {
+        console.error('Error al obtener los juegos:', error);
+        res.status(500).send(error.message);
+    }
+});
 
+/**SI IMPLEMENTADA**/
+// Filtrar juegos por etiqueta específica
+router.get('/juegosPorEtiqueta', async (req, res) => {
+    try {
+        const etiquetaBuscada = req.query.etiqueta; // Obtiene la etiqueta de la query string
+        if (!etiquetaBuscada) {
+            res.status(400).send('Se requiere una etiqueta para filtrar los juegos.');
+            return;
+        }
+
+        const juegosRef = db.collection('games');
+        // Realiza la consulta buscando juegos que contengan la etiqueta especificada
+        const snapshot = await juegosRef.where('tags', 'array-contains', etiquetaBuscada).get();
+
+        if (snapshot.empty) {
+            res.json({ juegos: [] }); // Devuelve un arreglo vacío si no hay juegos que coincidan
+            return;
+        }
+
+        const juegos = [];
+        snapshot.forEach(doc => {
+            juegos.push({ id: doc.id, ...doc.data() }); // Agrega cada juego encontrado al arreglo
+        });
+
+        res.json({ juegos }); // Envía la lista de juegos filtrados por la etiqueta
+    } catch (error) {
+        console.error('Error al filtrar los juegos por etiqueta:', error);
+        res.status(500).send(error.message);
+    }
+});
 
 /**SI IMPLEMENTADA**/
 router.get('/imgsJuego', async (req, res) => {
