@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <script src="../librerias/jquery-1.12.4.min.js"></script>
+  <script src="../js/register.js"></script>
+</head>
+<body>
+  <h2>Formulario de Registro</h2>
+  <form id="registerForm">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    
+    <input type="submit" value="Registrar">
+  </form>
+  <div>
+    <p>¿Ya tienes una cuenta? <a href="./login.html">Iniciar Sesión</a>.</p>
+  </div>  
+  <div id="response"></div>
+</body>
+</html>

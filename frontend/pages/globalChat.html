@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil del Usuario</title>
+    <style>
+        #messages {
+          border: 1px solid #ddd;
+          padding: 10px;
+          height: 200px;
+          width: 300px;
+          overflow-y: scroll;
+          margin-bottom: 10px;
+        }
+        #messageInput {
+          width: 240px;
+        }
+      </style>
+</head>
+<body>
+    <h1>Bienvenido, <span id="userName"></span></h1>
+    <button id="logoutButton">Cerrar Sesión</button>
+
+    <!-- Área del chat -->
+    <div id="chatContainer">
+        <div id="messages"></div>
+        <input type="text" id="messageInput" placeholder="Escribe tu mensaje aquí...">
+        <button id="sendButton">Enviar</button>
+    </div>
+  
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

@@ -98,5 +98,7 @@ function getJuegosPorEtiqueta(etiqueta) {
             console.error('Error al realizar la solicitud:', error.statusText);
         }
     });
+
+    
 }
 

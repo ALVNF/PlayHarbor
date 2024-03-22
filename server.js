@@ -13,9 +13,13 @@ app.use('/juegos', express.static('backend/juegos/revisados'));
 const usuariosRutas = require('./backend/mi-proyecto-backend/api/usuarios');
 const authRutas = require('./backend/mi-proyecto-backend/api/auth');
 const juegosRutas = require('./backend/mi-proyecto-backend/api/juegos');
+const mensajesRutas = require('./backend/mi-proyecto-backend/api/mensajes');
+
 app.use('/api', usuariosRutas);
 app.use('/api', authRutas);
 app.use('/api', juegosRutas);
+app.use('/api', mensajesRutas);
+
 // Cargar clave privada y certificado para HTTPS
 const privateKey = fs.readFileSync(path.join(__dirname, 'server.key'), 'utf8');
 const certificate = fs.readFileSync(path.join(__dirname, 'server.cert'), 'utf8');
