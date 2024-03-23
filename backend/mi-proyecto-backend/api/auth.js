@@ -12,7 +12,7 @@ router.post('/r', async (req, res) => {
     });
     // Insertar detalles del usuario en Firestore
     await admin.firestore().collection('users').doc(req.body.email).set({
-      user: req.body.usr,
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password,
       // Aquí puedes agregar más campos según tu modelo de datos

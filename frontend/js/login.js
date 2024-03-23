@@ -24,12 +24,18 @@ loginForm.addEventListener('submit', function (e) {
 
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
-    // Redirección al perfil del usuario
-    window.location.href = 'globalChat.html'; // Asegúrate de que esta ruta apunte a tu archivo `profile.html`.
+    return userCredential.user.getIdToken();
   })
-  .catch((error) => {
-    // Manejo de errores de inicio de sesión
-    console.error('Error', error);
-    alert('Error al iniciar sesión: ' + error.message);
+  .then((idToken) => {
+    localStorage.setItem('userToken', idToken);
+  })
+  .then(data => {
+    // Redirige al usuario o maneja la respuesta del backend
+    console.log(data);
+    window.location.href = 'globalChat.html';
+  })
+  .catch(error => {
+    console.error('Error durante el inicio de sesión', error);
   });
 });
+
