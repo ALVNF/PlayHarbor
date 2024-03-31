@@ -3,14 +3,14 @@ navMenuTemplate.innerHTML = `
     <link rel="stylesheet" href="../webComponents/navMenu/navMenu.css">
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html">
+            <a href="/pages/mainPage.html">
                 <img src="../assets/playful_pixel_art_logo.png" width="91" alt="Logo">
             </a>
         </div>
 
         <div class="menuContainer">
             <div class="menu">
-                <a href="index.html" class="menu-item">Browse Games <img src="../assets/abstract_red_tribal_pattern.png"></a>
+                <a href="/pages/mainPage.html" class="menu-item">Browse Games <img src="../assets/abstract_red_tribal_pattern.png"></a>
                 <a href="gtournaments.html" class="menu-item">
                     GTournaments <img src="../assets/yellow_hazard_sign_icon.png"></a>
                 <a href="upload_game.html" class="menu-item">Upload Game <img src="../assets/purple_monster_outline_icon.png"></a>

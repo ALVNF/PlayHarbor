@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - PlayHarbor</title>
+    <link rel="stylesheet" href="../styles/mainPage.css">
+
+    <!-- WebComponents -->
+    <script src="../webComponents/navMenu/navMenu.js"></script>
+    <script src="../webComponents/chat&Friends/chat&Friends.js"></script>
+    <script src="../webComponents/gamesFilter/gamesFilter.js"></script>
+
+</head>
+<body>
+    <header class="navbar">
+        <nav-menu></nav-menu>
+    </header>
+
+    <main id="main">
+        <section class="leftSection">
+            <games-filter id="gameFilter"></games-filter>
+        </section>
+
+        <section class="rightSection">
+            <chatfriends-menu></chatfriends-menu>
+        </section>
+    </main>
+</body>
+</html>

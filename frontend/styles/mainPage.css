@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0D1017;
+    color: #fff;
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin: 0px;
+}
+
+.leftSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.leftSection h2{
+    margin-left:30px;
+}
