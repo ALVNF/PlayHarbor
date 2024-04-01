@@ -8,6 +8,7 @@ const { storage } = require('../firebase');
 const { admin } = require('../firebase'); 
 const { release } = require('os');
 const socketIo = require('socket.io');
+const multer = require('multer');
 
 const rutaWeb = "https://localhost:3000/juegos/"
 
@@ -68,7 +69,53 @@ router.get('/infoJuego', async (req, res) => {
         res.status(500).json({ message: 'Error al conectar con Firestore.', error: error.message });
     }
 });
+/**SI IMPLEMENTADA**/
+//Se obtienen todos los juegos y su informacion.
+router.get('/todosLosJuegos', async (req, res) => {
+    try {
+        const juegosRef = db.collection('games');
+        const snapshot = await juegosRef.get();
+        const juegos = [];
+        snapshot.forEach(doc => {
+            juegos.push({ id: doc.id, ...doc.data() });
+        });
+        res.json({ juegos });
+    } catch (error) {
+        console.error('Error al obtener los juegos:', error);
+        res.status(500).send(error.message);
+    }
+});
 
+/**SI IMPLEMENTADA**/
+// Filtrar juegos por etiqueta específica
+router.get('/juegosPorEtiqueta', async (req, res) => {
+    try {
+        const etiquetaBuscada = req.query.etiqueta; // Obtiene la etiqueta de la query string
+        if (!etiquetaBuscada) {
+            res.status(400).send('Se requiere una etiqueta para filtrar los juegos.');
+            return;
+        }
+
+        const juegosRef = db.collection('games');
+        // Realiza la consulta buscando juegos que contengan la etiqueta especificada
+        const snapshot = await juegosRef.where('tags', 'array-contains', etiquetaBuscada).get();
+
+        if (snapshot.empty) {
+            res.json({ juegos: [] }); // Devuelve un arreglo vacío si no hay juegos que coincidan
+            return;
+        }
+
+        const juegos = [];
+        snapshot.forEach(doc => {
+            juegos.push({ id: doc.id, ...doc.data() }); // Agrega cada juego encontrado al arreglo
+        });
+
+        res.json({ juegos }); // Envía la lista de juegos filtrados por la etiqueta
+    } catch (error) {
+        console.error('Error al filtrar los juegos por etiqueta:', error);
+        res.status(500).send(error.message);
+    }
+});
 
 /**SI IMPLEMENTADA**/
 router.get('/imgsJuego', async (req, res) => {
@@ -197,29 +244,68 @@ router.get('/comentsJuego', async (req, res) => {
     }
 });
 
-/*No implementada. No prioritaria. Ver si se puede mandar en /infoJuego y dejar esta como func normal*/
-router.get('/globalClasifJuego', async (req, res) => {
+const upload = multer({ dest: 'uploads/' });
+router.post('/subirJuego', upload.fields([{ name: 'portada', maxCount: 1 }, { name: 'imagenes', maxCount: 10 }, { name: 'juego', maxCount: 1 }]), async (req, res) => {
+    console.log("Hola soy subirJuego");
+
+    const nombre = req.body.nombre;
+    const descripcion = req.body.descripcion;
+    const comentario = req.body.comentario;
+    const url = req.body.url;
+    const tags = JSON.parse(req.body.tags);
+    const plataformas = JSON.parse(req.body.plataformas);
+    const infoJuego = {
+        nombre: nombre,
+        descripcion: descripcion,
+        comentario: comentario,
+        url: url,
+        tags: tags,
+        plataformas: plataformas
+    };
+
+    const portada = req.files['portada'][0];
+    const imagenes = req.files['imagenes'];
+    const juego = req.files['juego'][0];
+
+    const rutaBase = path.join(__dirname, '../../juegos/pendientes/'+nombre);
+
     try {
-        const nombreJuego = (req.query.nombre).toLowerCase();
-        const docRef = db.collection('games').doc(nombreJuego).collection("comments");
-        const snapshot = await docRef.get();
-        if (snapshot.empty) {
-            res.json({ message: "Se el primero en dejar un comentario!" });
-            return;
+        // Crear la carpeta del juego si no existe
+        if (!fs.existsSync(rutaBase)) {
+            fs.mkdirSync(rutaBase, { recursive: true });
         }
 
-        /*A falta de recuperar mas informacion correspondiente al user para mostrar en comentario*/
-        const comentarios = [];
-        snapshot.forEach(doc => {
-            comentarios.push({
-                user: doc.data().user,
-                text: doc.data().text
+        // Definir rutas para los archivos
+        const rutaPortada = path.join(rutaBase, 'portada');
+        const rutaImagenes = path.join(rutaBase, 'imagenes');
+        const rutaJuego = path.join(rutaBase, 'juego');
+
+        // Crear las carpetas para los archivos
+        fs.mkdirSync(rutaPortada, { recursive: true });
+        fs.mkdirSync(rutaImagenes, { recursive: true });
+        fs.mkdirSync(rutaJuego, { recursive: true });
+
+        // Mover y renombrar los archivos
+        fs.rename(portada.path, path.join(rutaPortada, portada.originalname), (err) => {
+            if (err) throw err;
+        });
+        imagenes.forEach((imagen) => {
+            fs.rename(imagen.path, path.join(rutaImagenes, imagen.originalname), (err) => {
+                if (err) throw err;
             });
         });
+        fs.rename(juego.path, path.join(rutaJuego, juego.originalname), (err) => {
+            if (err) throw err;
+        });
 
-        res.json({ comments: comentarios });
+        
+        fs.writeFileSync(path.join(rutaBase+"/juego", 'informacion.json'), JSON.stringify(infoJuego, null, 2), 'utf8');
+
+
+        res.send('Datos recibidos y archivos guardados correctamente.');
     } catch (error) {
-        res.status(500).json({ message: 'Error al conectar con Firestore.', error: error.message });
+        console.error('Error al procesar la solicitud:', error);
+        res.status(500).send('Error al procesar la solicitud.');
     }
 });
 

@@ -1,0 +1,19 @@
+-Obtener todos los juegos (B: api/juegos.js, F:/backendCallers.js)
+
+-Obtener juegos por filtro. (Poner filtros fijos en front) (B: api/juegos.js, F:/backendCallers.js)
+
+-Clasificaciones. (B: api/usuarios.js, F:/potato.html - /potato.js)
+
+-Editar usr. (B: api/usuarios.js, F:/globalChat y potato.html - /modifyUserData.js -> backendCallers.js)
+
+-Login. (B: api/auth.js, F: login.html - /login.js)
+
+-Registro (B: api/auth.js, F: /register.html - /register.js)
+
+-Chat global. (B: No hay, F:/globalChat.js -> backendCallers.js)
+	·Añadir etiquetas <script> de firebase que se encuentran en  globalChat.html (y en potato.html)
+
+-Subir juego. (B: api/juegos.js, F: /potato.html - /potato.js)
+
+
+FALTA: Parte Juan y parte Blaya.
