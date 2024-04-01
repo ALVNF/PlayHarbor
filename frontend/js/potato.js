@@ -24,7 +24,8 @@ function getPuntos() {
 function subirJuego() {
   var nombre = $('#txtNombre').val();
   var descripcion = $('#txtDescripcion').val();
-
+  var comentario = $('#txtComentario').val();
+  var url = $('#urlInput').val();
   var plataformas = $('.plataforma:checked').map(function() {
       return $(this).val();
   }).get();
@@ -40,6 +41,8 @@ function subirJuego() {
   var formData = new FormData();
   formData.append('nombre', nombre);
   formData.append('descripcion', descripcion);
+  formData.append('comentario', comentario);
+  formData.append('url', url);
   formData.append('plataformas', JSON.stringify(plataformas));
   formData.append('tags', JSON.stringify(tags));
   formData.append('portada', portada);

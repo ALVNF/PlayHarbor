@@ -1,6 +1,10 @@
 {
-  "nombre": "Potato",
-  "descripcion": "juego de la hostia",
+  "nombre": "potato",
+  "descripcion": [
+    "potato2",
+    "comentario de potato2"
+  ],
+  "url": "https://youtube.es",
   "tags": [
     "boardGame"
   ],

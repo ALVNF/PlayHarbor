@@ -250,11 +250,15 @@ router.post('/subirJuego', upload.fields([{ name: 'portada', maxCount: 1 }, { na
 
     const nombre = req.body.nombre;
     const descripcion = req.body.descripcion;
+    const comentario = req.body.comentario;
+    const url = req.body.url;
     const tags = JSON.parse(req.body.tags);
     const plataformas = JSON.parse(req.body.plataformas);
     const infoJuego = {
         nombre: nombre,
         descripcion: descripcion,
+        comentario: comentario,
+        url: url,
         tags: tags,
         plataformas: plataformas
     };
