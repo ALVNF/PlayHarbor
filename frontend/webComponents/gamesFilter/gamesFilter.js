@@ -18,10 +18,13 @@ gamesFilterTemplate.innerHTML = `
                     <img src="../assets/icons/chevron-down.svg">
                     <h3>Genre</h3>
                 </div>
+                <label class="gameLbl"><input type="checkbox" id="action" name="action"> Action</label>
             </div>
         </div>
     </div>
 `;
+
+// Mejoras 
 
 class GamesFilter extends HTMLElement {
     constructor() {
