@@ -177,5 +177,23 @@ function getMessages() {
       console.error("Error al obtener mensajes:", error);
     });
   }
-  
+
+  function updateInfoUser(data) {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: "/api/updateUserInfo",
+        method: "PUT", // Cambiado a 'PUT' ya que es más adecuado para actualizaciones
+        contentType: "application/json", // Asegúrate de enviar el Content-Type correcto
+        data: JSON.stringify(data), // Asegúrate de convertir el objeto de datos a un string JSON
+        success: function(response) {
+          console.log("Información del usuario actualizada:", response);
+          resolve(response); // Resuelve la promesa con la respuesta
+        },
+        error: function(error) {
+          console.error("Error al actualizar la información del usuario:", error.statusText);
+          reject(error); // Rechaza la promesa con el error
+        }
+      });
+    });
+  }
   

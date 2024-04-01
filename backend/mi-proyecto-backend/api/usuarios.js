@@ -28,4 +28,26 @@ router.get('/infoUsuario', (req, res) => {
     });
 });
 
+router.put('/updateUserInfo', async (req, res) => {
+  
+  try {
+    const userEmail = req.body.email; // Asegúrate de que el email del usuario viene en la petición
+    const userUpdates = {
+      name: req.body.name,
+      surname: req.body.surname,
+      username: req.body.username
+      // Agrega más campos según sea necesario
+    };
+    
+    // Actualizar en Firestore
+    await admin.firestore().collection('users').doc(userEmail).update(userUpdates);
+
+    res.json({ message: 'Información del usuario actualizada con éxito.' });
+  } catch (error) {
+    console.error('Error al actualizar la información del usuario:', error);
+    res.status(500).json({ message: 'Error al actualizar la información del usuario.', error: error.message });
+  }
+});
+
+
 module.exports = router;

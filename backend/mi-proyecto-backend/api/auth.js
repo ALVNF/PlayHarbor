@@ -10,13 +10,30 @@ router.post('/r', async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
+
+    // Referencia al documento del usuario en Firestore
+    const userDocRef = admin.firestore().collection('users').doc(req.body.email);
+    
     // Insertar detalles del usuario en Firestore
-    await admin.firestore().collection('users').doc(req.body.email).set({
-      name: req.body.name,
+    await userDocRef.set({
+      ELObyGame: {},
+      admin: false,
+      developer: false,
       email: req.body.email,
+      exp: 0,
+      level: 0, 
+      name: req.body.username,
       password: req.body.password,
+      pointsByGame: {},
+      replyByGame: {},
+      saldo: 0.0, 
+      surname: "surnameEjemplo",
+      username: req.body.username,
       // Aquí puedes agregar más campos según tu modelo de datos
     });
+
+    await userDocRef.collection('achievementsByGame').doc('initialDoc').set({});
+    await userDocRef.collection('chats').doc('initialDoc').set({});
 
     res.status(201).send({ message: 'Usuario registrado con éxito.', uid: userRecord.email });
   } catch (error) {

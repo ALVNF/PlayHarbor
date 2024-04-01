@@ -4,7 +4,7 @@ $(document).ready(function() {
   
       // Recolecta los datos del formulario
       var userData = {
-        name: $('#name').val(),
+        username: $('#username').val(),
         email: $('#email').val(),
         password: $('#password').val()
       };
