@@ -13,11 +13,13 @@ app.use('/juegos', express.static('backend/juegos/revisados'));
 const usuariosRutas = require('./backend/mi-proyecto-backend/api/usuarios');
 const authRutas = require('./backend/mi-proyecto-backend/api/auth');
 const juegosRutas = require('./backend/mi-proyecto-backend/api/juegos');
+const juegosLogros= require('./backend/mi-proyecto-backend/api/logros');
 //const mensajesRutas = require('./backend/mi-proyecto-backend/api/mensajes');
 
 app.use('/api', usuariosRutas);
 app.use('/api', authRutas);
 app.use('/api', juegosRutas);
+app.use('/api', juegosLogros);
 //app.use('/api', mensajesRutas);
 
 // Cargar clave privada y certificado para HTTPS
@@ -33,8 +35,8 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res) => {
-  //res.sendFile(__dirname + '/frontend/index.html');
-  res.sendFile(__dirname + '/frontend/pages/descriptionGame.html');
+  res.sendFile(__dirname + '/frontend/pages/potato.html');
+  //res.sendFile(__dirname + '/frontend/pages/descriptionGame.html');
 });
 
 // app.get('/register', (req, res) => {

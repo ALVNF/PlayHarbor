@@ -1,0 +1,10 @@
+{
+  "nombre": "Potato",
+  "descripcion": "juego de la hostia",
+  "tags": [
+    "boardGame"
+  ],
+  "plataformas": [
+    "PC"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "nombre": "Potato2",
+  "descripcion": "Juego potato 2",
+  "tags": [
+    "boardGame"
+  ],
+  "plataformas": [
+    "Movil"
+  ]
+}
