@@ -196,4 +196,18 @@ function getMessages() {
       });
     });
   }
-  
+
+  //SE DEVUELVERN TODOS LOS TAGS IMPLEMENTADA POR ROLAND.
+  function getTodosLosTags() {
+    return $.ajax({
+        url: "/api/todosLosTags",
+        method: "GET",
+        success: function(data) {
+            console.log("Tags recuperados:", data.tags);
+            // Aquí puedes hacer algo con la lista de tags recuperados, como mostrarlos en la página
+        },
+        error: function(error) {
+            console.error("Error al realizar la solicitud:", error.statusText);
+        }
+    });
+}
