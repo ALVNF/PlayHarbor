@@ -154,9 +154,9 @@ function getMessages() {
   }
   
 /* LOGROS USUARIOS */
-  function getLogrosUser(){
+  function getLogrosGenerales(){
      $.ajax({
-        url: '/api/logrosUser',
+        url: '/api/logrosGenerales',
         method: 'GET',
         success: function (data) {
             console.log(data);
