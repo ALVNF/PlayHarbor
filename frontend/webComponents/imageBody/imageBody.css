@@ -3,25 +3,24 @@
 }
 .imageContainer{
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 61vw;
     margin-top: 50px;
-    width: f;
-    border: 1px solid red;
+    margin-left: -50px;
     background-color: #161B21;
-    align-items: center; /* Alinea el contenido verticalmente */
-    gap: 20px; /* Espacio entre la imagen y el texto */
+    gap: 20px;
 }
 
 .mediumImage{
-    width:800px;
-    height: 450px;
-    width: auto; /* Permitir que la imagen conserve su tamaño original */
-    max-width: 70%; /* Limita el ancho máximo de la imagen para que no desborde */
-    height: auto; /* Permitir que la altura se ajuste automáticamente */
+    width:600px;
+    height: 100%;
 }
 
 .gameDay p {
-    font-size: 15px;
-    color: #ddd; /* Color de texto gris */
+    width: 300px;
+    font-size: 13px;
+    color: #a4a4a4; /* Color de texto gris */
 }
 
 .gameDay a {
@@ -34,6 +33,7 @@
 
 
 #btnPlayInicio{
+    margin-top: 20px;
     width: 280px;
     height: 50px;
     background-color: #EB2C44;
@@ -49,11 +49,20 @@
 #btnPlayNow{
     width: 300px;
     height: 40px;
+    margin-bottom: 15px;
     background-color:#2B3347;;
     color: white;
     font-size: 18px;
     border: none;
     border-radius: 5px;
+}
+
+#btnPlayNow:hover{
+    background-color: #202635;
+}
+
+#btnPlayNow:active{
+    background-color: #353f5a;
 }
 
 .tagContainer{
