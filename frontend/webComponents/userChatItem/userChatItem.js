@@ -4,7 +4,7 @@ userChatItem.innerHTML = `
 
     <div class="mainContainer">
         <div class="profile">
-            <a href="perfil.html"><img src="../assets/red_trooper_helmet_icon.png" width="54" alt="Profile"></a>
+            <img src="../assets/red_trooper_helmet_icon.png" width="54" alt="Profile">
             <div id="userStatsContainer">
                 <span class="user-info">Red Macaco</span>
                 <div>
@@ -18,11 +18,17 @@ userChatItem.innerHTML = `
 `;
 
 class UserChatItem extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(userChatItem.content.cloneNode(true));
-  }
+    constructor() {
+        super();
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.appendChild(userChatItem.content.cloneNode(true));
+    }
+
+    connectedCallback() {
+        this.shadowRoot.querySelector(".mainContainer").addEventListener("click", () => {
+            console.log("UserChatItem clicked");
+        });
+    }
 
 }
 

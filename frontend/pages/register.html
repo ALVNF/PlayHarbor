@@ -3,27 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro de Usuario</title>
+  <title>Register - PlayHarbor</title>
+  
+  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/registerStyle.css">
+  <!-- Components -->
   <script src="../librerias/jquery-1.12.4.min.js"></script>
-  <script src="../js/register.js"></script>
+  <script src="../js/frontendViewer.js"></script>
+  <!-- Web Components -->
+  <script src="../webComponents/navMenu/navMenu.js"></script>
+  <script src="../webComponents/customAlert/customAlert.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
 </head>
 <body>
-  <h2>Formulario de Registro</h2>
-  <form id="registerForm">
-    <label for="name">Nombre:</label>
-    <input type="text" id="username" name="username" required><br><br>
-    
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" name="email" required><br><br>
-    
-    <label for="password">Contraseña:</label>
-    <input type="password" id="password" name="password" required><br><br>
-    
-    <input type="submit" value="Registrar">
-  </form>
-  <div>
-    <p>¿Ya tienes una cuenta? <a href="./login.html">Iniciar Sesión</a>.</p>
-  </div>  
-  <div id="response"></div>
+
+  <header class="navbar">
+    <nav-menu id="navMenu"></nav-menu>
+  </header>
+  <custom-alert id="customAlert"></custom-alert>  
+  <div class="mainContainer">
+    <img src="../assets/registerImage.jpeg">
+    <div id="formContainer">
+      <label>Already have an account? <a href="./login.html" id="registerLbl">Sign in!</a></label>
+      <hgroup>
+          <h1>Welcome!</h1>
+          <h3><span class="coloredText">Join now</span> and get ready for a <span class="coloredText">new world!</span></h3>
+      </hgroup>
+      <form id="registerForm" onsubmit="userRegister();return false">
+        <input type="text" id="username" placeholder="Enter name" name="username" required>
+        <input type="email" id="email" placeholder="Enter email" name="email" required>
+        <input type="password" id="password" placeholder="Password" name="password" required>
+        
+        <button type="submit">Sign up</button>
+      </form>
+
+      <div id="otherContainer">
+          <div id="otherText">
+              <hr id="hrLeft">
+              <label>Or continue with</label>
+              <hr id="hrRight">
+          </div>
+          <div id="socialMediaContainer">
+              <img src="../assets/icons/google-icon.svg">
+              <img src="../assets/icons/apple-icon.svg">
+              <img src="../assets/icons/meta-icon.svg">
+          </div>
+      </div>
+
+    </div>
+  </div>
+
 </body>
+
+
+<script>
+  const navMenu = document.getElementById('navMenu');
+  navMenu.showUserContainer(false);
+</script>
+
 </html>

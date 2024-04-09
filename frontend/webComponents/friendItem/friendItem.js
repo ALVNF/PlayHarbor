@@ -3,7 +3,7 @@ friendItemTemplate.innerHTML = `
   <link rel="stylesheet" href="../webComponents/friendItem/friendItem.css">
 
   <div class="profile">
-    <a href="perfil.html"><img src="../assets/red_trooper_helmet_icon.png" width="54" alt="Profile"></a>
+    <img src="../assets/red_trooper_helmet_icon.png" width="54" alt="Profile">
     <div id="userStatsContainer">
       <span class="user-info">Red Macaco</span>
       <div>

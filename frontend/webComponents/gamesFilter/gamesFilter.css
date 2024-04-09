@@ -4,7 +4,7 @@
     margin: 0;
     background-color: #161B21;
     width: 250px;
-    height: 100vh;
+    height: 92vh;
     border-radius: 0;
 }
 
@@ -86,11 +86,12 @@ h3{
 .filterSection{
     display: flex;
     flex-direction: column;
-    height: 87%;
+    height: 75%;
 }
 
 .gameLbl{
     padding-left: 30px;
+    margin-bottom: 7px;
     font-size: 16px;
     display: flex;
     flex-direction: row;
@@ -101,9 +102,6 @@ input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
     display: flex;
-
-    align-content: center;
-    justify-content: center;
     width: 13px;
     height: 13px;
     border-radius: 1.5px;
@@ -117,16 +115,40 @@ input[type="checkbox"]::before {
     width: 13px;
     height: 13px;
     align-self: center;    
-    
+
     transform: scale(0);
-    background-color: #EB2C44;
+    background-color: white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
 input[type="checkbox"]:checked::before {
-
     transform: scale(1);
-  }
+}
 
-  input[type="checkbox"]:hover {
+input[type="checkbox"]:hover {
     border: 1.5px solid #ff304c;
-  }
+}
+
+#applyButton{
+    background-color: #EB2C44;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    width: 230px;
+    height: 40px;
+
+    margin-left: 10px;
+    margin-right: auto;
+
+}
+
+#applyButton:hover{
+    cursor: pointer;
+    background-color: #FF3D5A;
+}
+
+#applyButton:active{
+    background-color: #C21E38;
+}

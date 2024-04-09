@@ -13,7 +13,7 @@ gamesFilterTemplate.innerHTML = `
 
         <div class="filterSection">
             <h2>Filters</h2>
-            <div class="filterOptions">
+            <div class="filterOptions" id="filterOptions">
                 <div class="titleContainer">
                     <img src="../assets/icons/chevron-down.svg">
                     <h3>Genre</h3>
@@ -21,6 +21,7 @@ gamesFilterTemplate.innerHTML = `
                 <label class="gameLbl"><input type="checkbox" id="action" name="action"> Action</label>
             </div>
         </div>
+        <button id="applyButton">Apply Filters</button>
     </div>
 `;
 
@@ -34,11 +35,42 @@ class GamesFilter extends HTMLElement {
 
     }
 
-    connectedCallback() {}
+    connectedCallback() {
+        this.shadowRoot.getElementById("applyButton").addEventListener("click", () => {
+            this.getCheckedElements();
+        });
+    }
+
+    getCheckedElements(){
+        let checkedElements = [];
+        let checkboxes = this.shadowRoot.querySelectorAll("input[type='checkbox']");
+        checkboxes.forEach((checkbox) => {
+            if(checkbox.checked){
+                checkedElements.push(checkbox.name);
+            }
+        });
+        this.startShowingFilteredGames(checkedElements);
+    }
+
+    startShowingFilteredGames(checkedElements){
+        const gameList = document.getElementById("gameList");
+        gameList.innerHTML = "";
+        if(checkedElements.length == 0){
+            loadGames();
+        }else{
+            checkedElements.forEach(element => {
+                loadFilteredGames(element);
+            });
+        }
+    }
 
     loadTags(tagName){
-        this.shadowRoot.getElementById("filterOptions").appendChild = `<label class="gameLbl"><input type="checkbox" id="action" name="action"> ${tagName}</label>`;
+        let container = document.createElement("div");
+        container.innerHTML = `<label class="gameLbl"><input type="checkbox" id="action" name="${tagName}">${tagName}</label>`
+        this.shadowRoot.getElementById("filterOptions").appendChild(container);
     }
+
+
 }
 
 customElements.define("games-filter", GamesFilter);

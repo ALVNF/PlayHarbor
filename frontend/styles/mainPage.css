@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+*{
+    
+    font-family: 'IBM Plex Sans', sans-serif;
+}
 body {
     margin: 0;
     padding: 0;
     background-color: #0D1017;
     color: #fff;
 }
-
-
 
 main{
     display: flex;
@@ -18,10 +21,43 @@ main{
 .leftSection{
     display: flex;
     flex-direction: column;
-    width: 100%;
-
 }
 
 .leftSection h2{
     margin-left:30px;
+}
+
+.gridLayoutCardContainer{
+    display: grid; /* Usar un diseño de rejilla */
+    grid-template-columns: repeat(4, 1fr); /* Crear 4 columnas de tamaño igual */
+    gap: 20px; /* Espacio entre las tarjetas */
+
+    width: 80%;
+    margin: 0 auto;
+}
+
+.cardContainer{
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid red;
+    margin: 15px;
+
+}
+
+.imagenContentBody{
+    display: grid;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.titulo{
+    color: #EB2C44;
+    margin-left:140px;
+    
+}
+
+.subtitulo{
+    color: #EB2C44;
+    margin-left:140px;
+    
 }

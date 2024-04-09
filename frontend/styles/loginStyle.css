@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+*{    
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0D1017;
+    color: #fff;
+}
+
+.mainContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin: 20px auto;
+
+    width: 70vw;
+    height: 630px;
+
+    background-color: #161B21;
+    border: 1px solid #2B3541;
+    border-radius: 20px;
+}
+
+.mainContainer img{
+    border-radius: 10px;
+    width: 500px;
+    height: 550px;
+}
+
+#formContainer{
+    width: 50%;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+}
+
+#formContainer label{
+    margin-left:auto;
+    margin-top: 15px;
+}
+#registerLbl{
+    text-decoration: none;
+    color: #FA364F;
+}
+
+#formContainer hgroup{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+hgroup{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+h1{
+    margin: 5px;
+    font-weight: 100;
+}
+
+h3{
+    margin: 0px;
+    font-weight: 100;
+}
+
+.coloredText{
+    color: #FA364F;
+}
+
+#loginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#loginForm input{
+    width: 60%;
+    margin: 20px 0 0px 0;
+    padding: 15px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: none;
+    background-color: #242B35;
+    color: #fff;
+}
+
+#forgotPasswordLbl{
+    margin-right: 90px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    user-select: none;
+}
+
+#forgotPasswordLbl:hover{
+    cursor: pointer;
+    color: #FA364F;
+}
+
+#forgotPasswordLbl:active{
+    color: #be293d;
+}
+
+#loginForm button{
+    border: none;
+    margin-top: 20px;
+    width: 65%;
+    height: 40px;
+    border-radius: 3px;
+    font-size: 18px;
+    color: white;
+    background-color: #FA364F;
+}
+
+#loginForm button:hover{
+    cursor: pointer;
+    transform: scale(1.01);
+
+}
+
+#loginForm button:active{
+    transform: scale(0.99);
+}
+
+#otherContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+#otherText{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+#otherText label{
+    margin: 0;
+    font-size: 14px;
+}
+
+#otherText hr{
+    flex-direction: column;
+    width: 15%;
+    height: 0;
+}
+
+#hrLeft{
+    margin-left: 90px;
+}
+
+#hrRight{
+    margin-right: 90px;
+}
+
+#socialMediaContainer{
+    margin-top: 30px;
+}
+
+#socialMediaContainer img{
+    width: 35px;
+    height: 35px;
+    margin: 0 20px;
+}
