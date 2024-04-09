@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+.filterContainer{
+    margin: 0;
+    background-color: #161B21;
+    width: 250px;
+    height: 92vh;
+    border-radius: 0;
+}
+
+h2{
+    margin:0;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-weight: 100;
+}
+
+h3{
+    margin:0;
+    padding-top: 10px;
+    font-weight: 100;
+    padding-bottom: 10px;
+}
+
+.titleContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 15px;
+    user-select: none;
+}
+
+.titleContainer img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+
+}
+
+#searchContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #2B3347;
+    padding: 5px 0 5px 5px;
+    margin: 10px;
+}
+
+#searchInput{
+    outline: none;
+    border: none;
+    background-color: #2B3347;
+
+
+    font-size: 15px;
+
+    color: white;
+
+    width: 230px;
+    height: 30px;
+
+}
+
+#searchButton{
+    background: none;
+    border: none;
+    color: white;
+}
+
+#searchButton:hover{
+    cursor: pointer;
+}
+
+#searchButton:active{
+    transform: scale(0.9);
+}
+
+#searchButton img{
+    width: 20px;
+    height: 20px;
+}
+
+
+.filterSection{
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+}
+
+.gameLbl{
+    padding-left: 30px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    user-select: none;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    display: flex;
+    width: 13px;
+    height: 13px;
+    border-radius: 1.5px;
+    border: 1.5px solid #EB2C44;
+    margin-right: 10px;
+
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    align-self: center;    
+
+    transform: scale(0);
+    background-color: white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]:hover {
+    border: 1.5px solid #ff304c;
+}
+
+#applyButton{
+    background-color: #EB2C44;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    width: 230px;
+    height: 40px;
+
+    margin-left: 10px;
+    margin-right: auto;
+
+}
+
+#applyButton:hover{
+    cursor: pointer;
+    background-color: #FF3D5A;
+}
+
+#applyButton:active{
+    background-color: #C21E38;
+}

@@ -3,6 +3,16 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    user-select: none;
+}
+
+.mainContainer:hover {
+    background-color: #2C2F33;
+    cursor: pointer;
+}
+
+.mainContainer:active {
+    background-color: #23272A;
 }
 
 .lastMessage {
