@@ -1,0 +1,15 @@
+.logrosContainer{
+    justify-content: space-between;
+    background-color: #161B26;
+    padding: 15px; 
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.achievments{
+    flex-direction: row;
+}
+
+.achievments img{
+    margin: 10px;
+}

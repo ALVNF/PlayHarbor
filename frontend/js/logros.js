@@ -16,9 +16,9 @@ router.get('/logrosGenerales', async (req, res) =>{//Obtebemos logros, sus campo
 
     const nombreUserAbuscar = req.query.nombre;
 
+    console.log("-----------------------------------------------------------------:" + nombreUserAbuscar);
 
     var patata = {}; 
-
     const docRefUsuarios = db.collection("users");
     const snapshotUsuarios = await docRefUsuarios.get();
     
@@ -28,41 +28,40 @@ router.get('/logrosGenerales', async (req, res) =>{//Obtebemos logros, sus campo
         for(const doc of snapshotUsuarios.docs){
             const datos = doc.data();
             const nombreUsuarioBD = doc.id;
-            if(nombreUsuarioBD == nombreUserAbuscar){
-                if (!patata[nombreUsuarioBD]) {
-                    patata[nombreUsuarioBD] = {};
+
+            if (!patata[nombreUsuarioBD]) {
+                patata[nombreUsuarioBD] = {};
+            }
+
+            const refAchUsr =  db.collection('users').doc(nombreUsuarioBD).collection("achievementsByGame");
+            const snapshotAchByGameUsr = await refAchUsr.get();
+            for (const juego of snapshotAchByGameUsr.docs) {
+                const datos = juego.data();
+                const nombreJuego = juego.id;
+                const achJuego = Object.keys(datos);
+
+                if (!patata[nombreUsuarioBD][nombreJuego]) {
+                    patata[nombreUsuarioBD][nombreJuego] = {};
                 }
-    
-                const refAchUsr =  db.collection('users').doc(nombreUsuarioBD).collection("achievementsByGame");
-                const snapshotAchByGameUsr = await refAchUsr.get();
-                for (const juego of snapshotAchByGameUsr.docs) {
-                    const datos = juego.data();
-                    const nombreJuego = juego.id;
-                    const achJuego = Object.keys(datos);
-    
-                    if (!patata[nombreUsuarioBD][nombreJuego]) {
-                        patata[nombreUsuarioBD][nombreJuego] = {};
-                    }
-    
-                    console.log("Logros de juego: " +  achJuego);
-                    for(var i = 0; i<achJuego.length;i++){
-                        console.log("Jugador: "+nombreUsuarioBD+" Juego: "+nombreJuego+" Logro: "+achJuego[i])
-                        const docRefLogros = db.collection("achievements").doc("games").collection(nombreJuego).doc(achJuego[i]);
-                        const snapLogros = await (await docRefLogros).get();
-                        if (snapLogros.exists) {
+
+                console.log("Logros de juego: " +  achJuego);
+                for(var i = 0; i<achJuego.length;i++){
+                    console.log("Jugador: "+nombreUsuarioBD+" Juego: "+nombreJuego+" Logro: "+achJuego[i])
+                    const docRefLogros = db.collection("achievements").doc("games").collection(nombreJuego).doc(achJuego[i]);
+                    const snapLogros = await (await docRefLogros).get();
+                    if (snapLogros.exists) {
+                        if(nombreUsuarioBD == nombreUserAbuscar){
                             patata[nombreUsuarioBD][nombreJuego][achJuego[i]] = snapLogros.data();
-                        } else {
-                            console.log("El documento", achJuego[i], "no existe.");
                         }
+                    } else {
+                        console.log("El documento", achJuego[i], "no existe.");
                     }
                 }
             }
 
-
         }
         
 
-        //console.log(patata);
         res.json({data: patata});
     }
 

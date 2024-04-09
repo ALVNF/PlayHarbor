@@ -211,4 +211,40 @@ function getMessages() {
       });
     });
   }
+
+  function getPuntos() {
+    var puntosD = "plataforma"; //juegos-plataforma
+    var tipoM = "torneo" //torneo-normal
+    return $.ajax({
+      type: "GET",
+      url: "/api/getPuntosJug",
+      data: { 
+        puntosD: puntosD,
+        tipoM: tipoM
+      },
+      success: function(response) {
+        console.log(response);
+      },
+      error: function(xhr, status, error) {
+        console.error("Error al obtener los puntos:", error);
+      }
+    });
+}
+
+  function getLogrosUsuario(nombreUsuario) {
+    return $.ajax({
+        url: '/api/logrosGenerales', // Asegúrate de que esta URL sea correcta y esté manejando la solicitud como esperas.
+        method: 'GET',
+        data: { 
+            nombre: nombreUsuario
+        }
+    }).then(response => {
+        console.log(response);
+        return response.data; // Asegúrate de ajustar esto según el formato exacto de tu respuesta.
+    }).fail(error => {
+        console.error("Error al obtener los logros:", error);
+    });
+}
+
+
   

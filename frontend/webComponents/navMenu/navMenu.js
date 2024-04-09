@@ -27,7 +27,7 @@ navMenuTemplate.innerHTML = `
                 <span class="spanStats"><label class="lblProfileStats">Exp.</label> 1500</span>
                 <span class="spanStats"><label class="lblProfileStats">Lvl.</label> 25</span>
             </div>
-            <a href="perfil.html"><img src="../assets/battle_ready_warrior_icon.png" width="54" alt="Profile"></a>
+            <a href="profile.html"><img src="../assets/battle_ready_warrior_icon.png" width="54" alt="Profile"></a>
         </div>
     </nav>
 
