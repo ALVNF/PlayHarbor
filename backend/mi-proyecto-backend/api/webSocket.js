@@ -18,23 +18,61 @@ wss.on('listening',()=>{
 
 wss.on('connection', (ws) => {
     console.log('Juego conectado al servidor WebSocket');
-
+    ws.send("JoaquinPutoAmo");
     // Manejar los mensajes recibidos desde el cliente
-    ws.on('message', (mensaje) => {
-        console.log('Mensaje recibido del juego: ' + mensaje);
+    ws.on('message', (mensaje1, mensaje2) => {
+        console.log('Mensaje recibido del juego: ' + mensaje1 + mensaje2);
 
         try {
             // Intentar analizar el mensaje JSON
-            const datos = JSON.parse(mensaje);
+            const datosJ1 = JSON.parse(mensaje1);
+            const datosJ2 = JSON.parse(mensaje2);
             
-            console.log('Datos recibidos: ', datos);
-
-            datos2 = datos.puntuacionJ1
-            console.log(datos2);
+            console.log('Datos recibidos: ', datosJ1, datosJ2);
             
             wsc.clients.forEach((client) => {
                 if (client.readyState === WebSocket.OPEN) {
-                  client.send(JSON.stringify(datos));
+                client.send(JSON.stringify({
+                    data: datosJ1.puntuacionJ1,
+                    type: 'puntuacion',
+                    name: "Puntuacion J1",
+                    subtype: "Puntos",
+                    usr: ""}));
+
+                client.send(JSON.stringify({
+                    data: datosJ1.tiempoTranscurrido,
+                    type: 'puntuacion',
+                    name: "Tiempo partida",
+                    subtype: "Segundos",
+                    usr: ""}));
+                
+                client.send(JSON.stringify({
+                    data: datosJ1.colisionesPala1,
+                    type: 'puntuacion',
+                    name: "Colisiones J1",
+                    subtype: "Colisiones",
+                    usr: ""}));
+
+                client.send(JSON.stringify({
+                    data: datosJ2.puntuacionJ2,
+                    type: 'puntuacion',
+                    name: "Puntuacion J1",
+                    subtype: "Puntos",
+                    usr: ""}));
+
+                client.send(JSON.stringify({
+                    data: datosJ2.tiempoTranscurrido,
+                    type: 'puntuacion',
+                    name: "Tiempo partida",
+                    subtype: "Segundos",
+                    usr: ""}));
+                
+                client.send(JSON.stringify({
+                    data: datosJ2.colisionesPala2,
+                    type: 'puntuacion',
+                    name: "Colisiones J2",
+                    subtype: "Colisiones",
+                    usr: ""}));
                 }
                 });
             
