@@ -1,121 +1,75 @@
-/*Esta funcion la teneis que ejecutar nada mas paseis a la ventana donde se juega, despues de darle a "Jugar"*/
-// getJuego();
-function getJuego(nombreJuego) {
-  return $.ajax({
-    url: "/api/jugar",
-    method: "GET",
-    data: { nombre: nombreJuego },
-    success: function (data) {
-      //console.log(data);
-      return data;
-    },
-    error: function (error) {
-      console.error("Error al realizar la solicitud:", error.statusText);
-    },
-  });
-}
 
-function getInfoJuego(nombreJuego) {
-  return $.ajax({
-    url: "/api/infoJuego",
-    method: "GET",
-    data: { nombre: nombreJuego },
-    success: function (data) {
-      //console.log(data.datos);
-    },
-    error: function (error) {
-      console.error("Error al realizar la solicitud:", error.statusText);
-    },
-  });
-}
+/*FUUNCION PARA RECUPERAR PUNTOS DE TODOS LOS JUGADORES, POR JUEGO Y DE PLATAFORMA*/
+function getPuntos() {
 
-function getComentsJuego(nombreJuego) {
-  return $.ajax({
-    url: "/api/comentsJuego",
-    method: "GET",
-    data: { nombre: nombreJuego },
-    success: function (data) {
-      //console.log(data);
-    },
-    error: function (error) {
-      console.error("Error al realizar la solicitud:", error.statusText);
-    },
-  });
-}
-
-function getImgsJuego(nombreJuego, tipo) {
-  return $.ajax({
-    url: "/api/imgsJuego",
-    method: "GET",
-    data: {
-      nombre: nombreJuego,
-      tipo: tipo,
-    },
-    success: function (data) {
-      // Vacía el contenedor de la galería antes de agregar nuevas imágenes
-      // const galeria = $('#galeria');
-      // galeria.empty();
-      // // Añade cada imagen a la galería
-      // data.urls.forEach(url => {
-      //     $('<img>', {src: url}).appendTo(galeria);
-      // });
-    },
-    error: function (error) {
-      console.error("Error al realizar la solicitud:", error.statusText);
-    },
-  });
-}
-
-function getTodosLosJuegos() {
-  return $.ajax({
-    url: "/api/todosLosJuegos",
-    method: "GET",
-    success: function (data) {
-      console.log("Juegos:", data.juegos);
-      // Aquí puedes hacer algo con la lista de juegos, como mostrarlos en la página
-    },
-    error: function (error) {
-      console.error("Error al realizar la solicitud:", error.statusText);
-    },
-  });
-}
-
-function getJuegosPorEtiqueta(etiqueta) {
-  return $.ajax({
-    url: "/api/juegosPorEtiqueta",
-    method: "GET",
-    data: { etiqueta: etiqueta }, // Pasa la etiqueta como parámetro en la solicitud
-    success: function (data) {
-      console.log("Juegos filtrados por etiqueta:", data.juegos);
-      // Aquí puedes hacer algo con la lista de juegos filtrados, como mostrarlos en la página
-    },
-    error: function (error) {
-      console.error("Error al realizar la solicitud:", error.statusText);
-    },
-  });
-}
-
-//Recuperar el usuario a traves del token
-function getInfoUsuario(idToken) {
-  // Asegúrate de que esta función devuelva una promesa
-  return new Promise((resolve, reject) => {
+    var puntosD = "plataforma"; //juegos-plataforma
+    var tipoM = "torneo" //torneo-normal
     $.ajax({
-      url: "/api/infoUsuario",
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + idToken,
+      type: "GET",
+      url: "/api/getPuntosJug",
+      data: { 
+        puntosD: puntosD,
+        tipoM: tipoM
       },
-      success: function (data) {
-        console.log("Datos del jugador:", data);
-        resolve(data); // Resuelve la promesa con los datos
+      success: function(response) {
+        console.log(response);
       },
-      error: function (error) {
-        console.error("Error al realizar la solicitud:", error.statusText);
-        reject(error); // Rechaza la promesa con el error
-      },
+      error: function(xhr, status, error) {
+        console.error("Error al obtener los puntos:", error);
+      }
     });
+}
+
+/*ENVIAR DATOS DE FORMULARIO DE SUBIDA DE JUEGO*/
+function subirJuego() {
+  var nombre = $('#txtNombre').val();
+  var descripcion = $('#txtDescripcion').val();
+  var comentario = $('#txtComentario').val();
+  var url = $('#urlInput').val();
+  var plataformas = $('.plataforma:checked').map(function() {
+      return $(this).val();
+  }).get();
+
+  var tags = $('.tags:checked').map(function() {
+      return $(this).val();
+  }).get();
+
+  var portada = $('#imgPortada')[0].files[0];
+  var imagenes = $('#imgsMuestra')[0].files;
+  var juego = $('#juego')[0].files[0];
+
+  var formData = new FormData();
+  formData.append('nombre', nombre);
+  formData.append('descripcion', descripcion);
+  formData.append('comentario', comentario);
+  formData.append('url', url);
+  formData.append('plataformas', JSON.stringify(plataformas));
+  formData.append('tags', JSON.stringify(tags));
+  formData.append('portada', portada);
+  for (var i = 0; i < imagenes.length; i++) {
+      formData.append('imagenes', imagenes[i]);
+  }
+  formData.append('juego', juego);
+
+  $.ajax({
+      url: '/api/subirJuego',
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(response) {
+          console.log('Solicitud enviada correctamente.');
+          // Manejar la respuesta del servidor aquí si es necesario
+      },
+      error: function(xhr, status, error) {
+          console.error('Error al enviar la solicitud:', error);
+          // Manejar el error aquí si es necesario
+      }
   });
 }
+
+
+/*CHAT GLOBAL*/
 
 function sendMessageToFirestore(userName, messageText) {
   if (!messageText.trim()) return; // No enviar mensajes vacíos
@@ -178,6 +132,8 @@ function getMessages() {
     });
   }
 
+
+/*EDITAR USR*/
   function updateInfoUser(data) {
     return new Promise((resolve, reject) => {
       $.ajax({
@@ -196,4 +152,19 @@ function getMessages() {
       });
     });
   }
+  
+/* LOGROS USUARIOS */
+  function getLogrosUser(){
+     $.ajax({
+        url: '/api/logrosUser',
+        method: 'GET',
+        success: function (data) {
+            console.log(data);
+            //return data;
+        },
+        error: function (error) {
+            console.error('Error al realizar la solicitud:', error.statusText);
+        }
+    });
+}
   

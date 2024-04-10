@@ -1,23 +1,4 @@
-
-/*function getPuntuacion(puntuacionJuego){
-    console.log("Soy getPuntuacion()");
-    return $.ajax({
-        url: '/api/puntuacion',
-        method: 'GET',
-        data: {nombre: puntuacionJuego},
-        success: function (data) {
-            console.log(data);
-            //$('#contenedorJuego').attr('src', data);
-            actualizarPuntuacion(data);
-        },
-        error: function (error) {
-            console.error('Error al realizar la solicitud:', error.statusText);
-            
-        }
-    });
-}*/
-
-    const ws = new WebSocket('ws://localhost:8082');
+const ws = new WebSocket('ws://localhost:8082');
 
     var datos;
 

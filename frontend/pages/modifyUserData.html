@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil</title>
+    <style>
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding-top: 50px;
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Perfil</h1>
+        <input type="text" id="nameInput" placeholder="Nombre completo">
+        <input type="text" id="surnameInput" placeholder="Apellido">
+        <input type="email" id="emailInput" placeholder="Correo electrónico">
+        <input type="text" id="usernameInput" placeholder="Nombre de usuario">
+        <button id="updateProfileButton">Actualizar Perfil</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+        <!-- Backend Functionalities -->
+    <script src="../js/modfyUserData.js"></script>
+    <script src="../js/backendCallers.js"></script>
+    <script src="../js/frontendViewer.js"></script>
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
+</body>
+</html>
