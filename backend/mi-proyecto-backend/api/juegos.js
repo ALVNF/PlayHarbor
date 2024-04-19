@@ -253,14 +253,14 @@ router.post('/subirJuego', upload.fields([{ name: 'portada', maxCount: 1 }, { na
     const comentario = req.body.comentario;
     const url = req.body.url;
     const tags = JSON.parse(req.body.tags);
-    //const plataformas = JSON.parse(req.body.plataformas);
+    const plataformas = JSON.parse(req.body.plataformas);
     const infoJuego = {
         nombre: nombre,
         descripcion: descripcion,
         comentario: comentario,
         url: url,
-        tags: tags
-        //plataformas: plataformas
+        tags: tags,
+        plataformas: plataformas
     };
 
     const portada = req.files['portada'][0];
@@ -306,33 +306,6 @@ router.post('/subirJuego', upload.fields([{ name: 'portada', maxCount: 1 }, { na
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
         res.status(500).send('Error al procesar la solicitud.');
-    }
-});
-
-//FUNCION PARA REUCUPERAR TODOS LOS TAGS IMPLEMENTADA POR ROLAND
-router.get('/todosLosTags', async (req, res) => {
-    try {
-        // Referencia a la colección 'tags'
-        const tagsRef = db.collection('tags');
-        // Recupera todos los documentos de la colección 'tags'
-        const snapshot = await tagsRef.get();
-
-        // Verifica si la colección está vacía
-        if (snapshot.empty) {
-            res.json({ tags: [] }); // Devuelve un arreglo vacío si no hay tags
-            return;
-        }
-
-        const tags = [];
-        snapshot.forEach(doc => {
-            // Agrega el id del documento (el nombre del tag en este caso) al arreglo tags
-            tags.push(doc.id);
-        });
-
-        res.json({ tags }); // Envía la lista de tags
-    } catch (error) {
-        console.error('Error al obtener los tags:', error);
-        res.status(500).send(error.message);
     }
 });
 
