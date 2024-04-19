@@ -15,18 +15,18 @@ function getJuego(nombreJuego) {
   });
 }
 
-  //SE DEVUELVERN TODOS LOS TAGS IMPLEMENTADA POR ROLAND.
+//SE DEVUELVERN TODOS LOS TAGS IMPLEMENTADA POR ROLAND.
 function getTodosLosTags() {
   return $.ajax({
     url: "/api/todosLosTags",
     method: "GET",
-    success: function(data) {
+    success: function (data) {
       //console.log("Tags recuperados:", data.tags);
       // Aquí puedes hacer algo con la lista de tags recuperados, como mostrarlos en la página
     },
-    error: function(error) {
+    error: function (error) {
       console.error("Error al realizar la solicitud:", error.statusText);
-    }
+    },
   });
 }
 
@@ -162,53 +162,96 @@ function sendMessageToFirestore(userName, messageText) {
 
 //obtener mensajes en orden y en tiempo real
 function getMessages() {
-    const db = firebase.firestore();
-    const messagesRef = db.collection("globalChat").doc("messages");
-  
-    // Observa los cambios en tiempo real
-    messagesRef.onSnapshot((doc) => {
+  const db = firebase.firestore();
+  const messagesRef = db.collection("globalChat").doc("messages");
+
+  // Observa los cambios en tiempo real
+  messagesRef.onSnapshot(
+    (doc) => {
       if (doc.exists) {
-        const messagesContainer = document.getElementById('messages');
+        const messagesContainer = document.getElementById("messages");
         // Limpiar los mensajes anteriores
-        messagesContainer.innerHTML = '';
-  
+        messagesContainer.innerHTML = "";
+
         const messagesData = doc.data();
         const messagesArray = Object.keys(messagesData)
-          .filter(key => key.startsWith('message_')) // Filtra solo las claves que empiezan con 'message_'
-          .map(key => ({ id: key, ...messagesData[key] })) // Transforma en array de objetos
+          .filter((key) => key.startsWith("message_")) // Filtra solo las claves que empiezan con 'message_'
+          .map((key) => ({ id: key, ...messagesData[key] })) // Transforma en array de objetos
           .sort((a, b) => b.timestamp.seconds - a.timestamp.seconds); // Ordena los mensajes por timestamp en orden descendente
-  
+
         // Añadir los mensajes al contenedor
-        messagesArray.forEach(message => {
-          const messageElement = document.createElement('div');
-          const timestamp = message.timestamp ? new Date(message.timestamp.seconds * 1000).toLocaleString() : 'Enviando...';
+        messagesArray.forEach((message) => {
+          const messageElement = document.createElement("div");
+          const timestamp = message.timestamp
+            ? new Date(message.timestamp.seconds * 1000).toLocaleString()
+            : "Enviando...";
           messageElement.textContent = `${message.name}: ${message.text} - ${timestamp}`;
           messagesContainer.prepend(messageElement); // Añade el mensaje al principio del contenedor
         });
       } else {
         console.error("El documento no existe.");
       }
-    }, (error) => {
+    },
+    (error) => {
       console.error("Error al obtener mensajes:", error);
-    });
-  }
+    }
+  );
+}
 
-  function updateInfoUser(data) {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: "/api/updateUserInfo",
-        method: "PUT", // Cambiado a 'PUT' ya que es más adecuado para actualizaciones
-        contentType: "application/json", // Asegúrate de enviar el Content-Type correcto
-        data: JSON.stringify(data), // Asegúrate de convertir el objeto de datos a un string JSON
-        success: function(response) {
-          console.log("Información del usuario actualizada:", response);
-          resolve(response); // Resuelve la promesa con la respuesta
-        },
-        error: function(error) {
-          console.error("Error al actualizar la información del usuario:", error.statusText);
-          reject(error); // Rechaza la promesa con el error
-        }
-      });
+function updateInfoUser(data) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "/api/updateUserInfo",
+      method: "PUT", // Cambiado a 'PUT' ya que es más adecuado para actualizaciones
+      contentType: "application/json", // Asegúrate de enviar el Content-Type correcto
+      data: JSON.stringify(data), // Asegúrate de convertir el objeto de datos a un string JSON
+      success: function (response) {
+        console.log("Información del usuario actualizada:", response);
+        resolve(response); // Resuelve la promesa con la respuesta
+      },
+      error: function (error) {
+        console.error(
+          "Error al actualizar la información del usuario:",
+          error.statusText
+        );
+        reject(error); // Rechaza la promesa con el error
+      },
     });
-  }
-  
+  });
+}
+
+function getPuntos() {
+  var puntosD = "plataforma"; //juegos-plataforma
+  var tipoM = "torneo"; //torneo-normal
+  return $.ajax({
+    type: "GET",
+    url: "/api/getPuntosJug",
+    data: {
+      puntosD: puntosD,
+      tipoM: tipoM,
+    },
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (xhr, status, error) {
+      console.error("Error al obtener los puntos:", error);
+    },
+  });
+}
+
+function getLogrosUsuario(nombreUsuario) {
+  return $.ajax({
+    url: "/api/logrosGenerales",
+    method: "GET",
+    data: {
+      nombre: nombreUsuario,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .fail((error) => {
+      console.error("Error al obtener los logros:", error);
+    });
+}

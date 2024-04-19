@@ -1,9 +1,11 @@
 {
   "nombre": "Alvaro",
-  "descripcion": "Descripcion",
-  "comentario": "Context",
-  "url": "https://www.youtube.com",
+  "descripcion": "Descripción",
+  "comentario": "Hola este es mi video juego",
+  "url": "https://youtube.com",
   "tags": [
-    "arcadeGame"
+    "arcadeGame",
+    "none",
+    "none"
   ]
 }
