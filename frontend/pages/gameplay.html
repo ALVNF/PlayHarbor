@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,43 +7,49 @@
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/gameplayStyle.css">
 
-    <!-- WebComponents -->
+    <!-- Importación de bibliotecas y componentes web -->
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
     <script src="../webComponents/navMenu/navMenu.js"></script>
     <script src="../webComponents/pointsStatusBar/pointsStatusBar.js"></script>
     <script src="../webComponents/gameplayChat/gameplayChat.js"></script>
     <script src="../webComponents/playingUser/playingUser.js"></script>
 
-    <!-- Backend Functionalities -->
+    <!-- Scripts para funcionalidades del backend y visualización en frontend -->
     <script src="../js/backendCallers.js"></script>
-    <!-- <script src="../js/globalChat.js"></script> -->
     <script src="../js/frontendViewer.js"></script>
-    <script src="../librerias/jquery-1.12.4.min.js"></script>
-    
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
 
-
-
+    <!-- Función para cargar la URL del juego de Phaser dinámicamente en el iframe -->
+    <script>
+    function loadGameScreen() {
+        var gameUrl = 'pong.html';  // Ajusta según la ubicación real del archivo dentro de tu servidor
+        var gameContainer = document.getElementById('contenedorJuego');
+        gameContainer.src = gameUrl;
+    }
+    </script>
 </head>
-
 <body id="body" onload="loadGameScreen()">
     <header>
+        <!-- Componente de menú de navegación -->
         <nav-menu></nav-menu>
     </header>
     
-    <div class ="container">
+    <div class="container">
         <div class="left-column">
             <div class="buttonsContainer">
+                <!-- Botones para cerrar la página y cambiar al modo pantalla completa -->
                 <button id="closePage" class="btnManager" onclick="returnToMain()">X</button>
-                <button id="fullScreenBtn" class="btnManager" onclick="augmentScreen()"><img src="../assets/icons/moreSize.svg"></button>
+                <button id="fullScreenBtn" class="btnManager" onclick="augmentScreen()">
+                    <img src="../assets/icons/moreSize.svg">
+                </button>
             </div>
-            <iframe id="contenedorJuego" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- Iframe donde se carga el juego -->
+            <iframe id="contenedorJuego" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- Barra de puntos del juego -->
             <points-bar></points-bar>
         </div>
 
         <div class="right-column">
+            <!-- Contenedor de puntos en juego y lista de usuarios jugando -->
             <div class="inGamePointsContainer">
                 <h1>In Game Points</h1>
                 <hr>
@@ -52,11 +57,9 @@
                     <playing-user></playing-user>
                 </div>
             </div>
+            <!-- Chat de juego -->
             <gameplay-chat></gameplay-chat>
         </div>
-
     </div>
-
 </body>
-
 </html>
