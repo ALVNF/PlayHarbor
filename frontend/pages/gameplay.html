@@ -16,6 +16,7 @@
 
     <!-- Backend Functionalities -->
     <script src="../js/backendCallers.js"></script>
+    <script src="../js/puntuacion.js"></script>
     <!-- <script src="../js/globalChat.js"></script> -->
     <script src="../js/frontendViewer.js"></script>
     <script src="../librerias/jquery-1.12.4.min.js"></script>
@@ -41,7 +42,7 @@
                 <button id="fullScreenBtn" class="btnManager" onclick="augmentScreen()"><img src="../assets/icons/moreSize.svg"></button>
             </div>
             <iframe id="contenedorJuego" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <points-bar></points-bar>
+            <points-bar id="statsBar"></points-bar>
         </div>
 
         <div class="right-column">

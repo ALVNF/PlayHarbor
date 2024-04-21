@@ -63,14 +63,26 @@ main{
     overflow-y: auto;
 }
 
+.middleSection h2{
+    margin-left: 50px;
+    margin-bottom: 5px;
+}
+
+.middleSection h4{
+    margin-left: 50px;
+    margin-top: 0;
+    color: #686868;
+}
+
 .gridLayoutCardContainer{
     display: grid; /* Usar un diseño de rejilla */
-    grid-template-columns: repeat(4, 1fr); /* Crear 4 columnas de tamaño igual */
-    gap: 20px; /* Espacio entre las tarjetas */
-
-    width: 80%;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr); /* Crear 4 columnas de tamaño igual */
+    column-gap: 10px;
+    row-gap: 20px; /* Espacio entre las tarjetas */
+    
+    margin: 0 0 0 50px;
 }
+
 
 .cardContainer{
     width: fit-content;
