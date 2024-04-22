@@ -6,6 +6,7 @@ let socketAbierto = new Promise((resolve, reject) =>{
     ws.onopen = function() {
         console.log('\n\n\n[Simon] Conectado al servidor WebSocket\n\n\n');
         //ws.send(JSON.stringify({ action: 'getClasificacion' }));
+		ws.send(JSON.stringify({type: "juego", data: "Simon"}));
     };
 }) 
 

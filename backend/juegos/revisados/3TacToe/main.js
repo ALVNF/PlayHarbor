@@ -11,6 +11,7 @@ let socketAbierto = new Promise((resolve, reject) => {
   ws.onopen = function () {
     console.log("\n\n\nJuego Conectado al servidor WebSocket\n\n\n");
     ws.send(JSON.stringify({ data: "getClasificacion" }));
+    ws.send(JSON.stringify({type: "juego", data: "3TacToe"}));
   };
 });
 

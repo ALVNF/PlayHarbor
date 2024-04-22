@@ -4,6 +4,7 @@ let socketAbierto = new Promise((resolve, reject) =>{
     // Escuchar eventos de la conexión WebSocket
     ws.onopen = function() {
         console.log('\n\n\nJuego Conectado al servidor WebSocket\n\n\n');
+		ws.send(JSON.stringify({type: "juego", data: "Tateri"}));
         //ws.send(JSON.stringify({type: "puntuacion", data: "hola"}));
 		/*{
 			usr: "Paco",
