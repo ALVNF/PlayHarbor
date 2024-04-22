@@ -18,7 +18,7 @@
     <script src="../webComponents/datosPerfil/datosPerfil.js"></script>
     <script src="../webComponents/classificationPlayers/classificationPlayers.js"></script>
     <script src="../webComponents/gameCard/gameCard.js"></script>
-
+    <script src="../webComponents/achievementCard/achievementCard.js"></script>
 
     <!-- Backend Functionalities -->
     <script src="../js/backendCallers.js"></script>
@@ -35,17 +35,17 @@
 
     <main id="main">
         <section class="leftSection">
-            <div class="topSection">
-                <datos-perfil></datos-perfil>
-                <div class="rightColumn">
-                    <h1>Achievements</h1>
-                    <logros-jugador></logros-jugador>
-                </div>
+            <datos-perfil></datos-perfil>
+
+            <h2>Achievements</h2>
+            <div class="achievementsContainer">
+                <achievement-card></achievement-card>
+                <achievement-card></achievement-card>
             </div>
+
             <h2>Favourite Games</h2>
             <game-card></game-card>
-            <h2>Community Reviews</h2>
-            <div class="reviewsContainer" id="reviewList"></div>
+
             <h2>Best Global Players</h2>
             <classification-players></classification-players>
         </section>

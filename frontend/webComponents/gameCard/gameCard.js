@@ -31,7 +31,7 @@ const gameCardTemplate = document.createElement("template");
             super();
             this.attachShadow({ mode: "open" });
             this.shadowRoot.appendChild(gameCardTemplate.content.cloneNode(true));
-    
+            this.gameName;
             // Elementos del shadow DOM
             this.gameContainer = this.shadowRoot.querySelector(".gameCard");
             this.gameImageElement = this.shadowRoot.querySelector(".gameImage");
@@ -47,6 +47,7 @@ const gameCardTemplate = document.createElement("template");
         }
 
         loadGameCard(game) {
+            this.gameName = game.name;
             this.setTitle(game.name);
             this.setDeveloper(game.developer);
             // this.setScore(game.score);
@@ -57,6 +58,7 @@ const gameCardTemplate = document.createElement("template");
         }
 
         goToGamePage() {
+            localStorage.setItem("gameName", this.gameName);
             window.location.href = "/pages/descriptionGame.html";
         }
 

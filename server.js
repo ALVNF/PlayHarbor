@@ -14,13 +14,13 @@ const usuariosRutas = require('./backend/mi-proyecto-backend/api/usuarios');
 const authRutas = require('./backend/mi-proyecto-backend/api/auth');
 const juegosRutas = require('./backend/mi-proyecto-backend/api/juegos');
 const juegosLogros= require('./backend/mi-proyecto-backend/api/logros');
-//const mensajesRutas = require('./backend/mi-proyecto-backend/api/mensajes');
+const webJuegosRutas = require('./backend/mi-proyecto-backend/api/webSocket');
 
 app.use('/api', usuariosRutas);
 app.use('/api', authRutas);
 app.use('/api', juegosRutas);
 app.use('/api', juegosLogros);
-//app.use('/api', mensajesRutas);
+app.use('/api', webJuegosRutas);
 
 // Cargar clave privada y certificado para HTTPS
 const privateKey = fs.readFileSync(path.join(__dirname, 'server.key'), 'utf8');
@@ -39,15 +39,6 @@ app.get('/', (req, res) => {
   //res.sendFile(__dirname + '/frontend/pages/descriptionGame.html');
 });
 
-// app.get('/register', (req, res) => {
-//   res.sendFile(__dirname + '/frontend/register.html');
-// });
-// app.get('/login', (req, res) => {
-//   res.sendFile(__dirname + '/frontend/login.html');
-// });
-// app.get('/profile', (req, res) => {
-//   res.sendFile(__dirname + '/frontend/profile.html');
-// });
 
 // Crear un servidor HTTPS
 const httpsServer = https.createServer({

@@ -1,5 +1,5 @@
-// Configuración de Firebase (reemplaza esto con tu propia configuración de Firebase)
-
+var nombreJuego = "Pong"
+var nombreJuego2 = "Potato"
 
 /*Functions for login page */
 function userLogin(){
@@ -122,6 +122,21 @@ function loadFilteredGames(selectedTag){
 }
 
 /* Functions for descriptionGame page */
+
+function loadData(){
+    chekUserLogin();
+    loadGameComments();
+    loadGameInfo();
+    loadGameCover();
+    loadGameImages();
+}
+
+function setJuego(){
+    nombreJuego = localStorage.getItem('gameName');
+    loadData();
+
+}
+
 function loadGameComments() {
     getComentsJuego(nombreJuego).then((comments) => {
         //console.log(comments);
@@ -169,17 +184,10 @@ function showComments(commentsList) {
 }
 
 /* Functions for game page */
-var nombreJuego = "Pong"
-var nombreJuego2 = "Potato"
-function loadData(){
-    chekUserLogin();
-    loadGameComments();
-    loadGameInfo();
-    loadGameCover();
-    loadGameImages();
-}
 
 function loadGameScreen() {
+    nombreJuego = localStorage.getItem('gameName');
+    console.log("El juego es: "+ nombreJuego);
     getJuego(nombreJuego).then((gameUrl) => {
         console.log(gameUrl);
         $('#contenedorJuego').attr('src', gameUrl);

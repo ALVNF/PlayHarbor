@@ -3,13 +3,19 @@ datosPerfilTemplate.innerHTML = `
     <link rel="stylesheet" href="../webComponents/datosPerfil/datosPerfil.css">
 
     <div class="profile">
-        <a href="perfil.html"><img src="../assets/battle_ready_warrior_icon.png" width="54" alt="Profile" id="usrImg"></a>
+        <a href="profile.html"><img src="../assets/battle_ready_warrior_icon.png" width="54" alt="Profile" id="usrImg"></a>
         <div id="userStatsContainer">
             <div class="user-info" id="userName">Valhalla Records</div>
-            <span class="spanStats" id="userExp"><label class="lblProfileStats">Exp.</label> 1500</span>
-            <span class="spanStats" id="userLvl"><label class="lblProfileStats">Lvl.</label> 25</span>
+            <div id="lvlInfoContainer">
+                <span class="spanStats" id="userExp"><label class="lblProfileStats">Exp.</label> 1500</span>
+                <span class="spanStats" id="userLvl"><label class="lblProfileStats">Lvl.</label> 25</span>
+            </div>
             <hr>
-            <div class="tagList" id="tagList"></div>
+            <div class="tagList" id="tagList">
+                <span class="profileInfo player">Player</span>
+                <span class="profileInfo admin">Administrator</span>
+                <span class="profileInfo developer">Developer</span>
+            </div>
         </div>
     </div>
 `;

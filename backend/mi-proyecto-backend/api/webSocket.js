@@ -1,89 +1,111 @@
+const path = require('path');
+const fs = require('fs');
+const { db } = require('../firebase'); // Importa db desde firebase.js
+const { storage } = require('../firebase'); 
+const { admin } = require('../firebase'); 
+const { release } = require('os');
+const socketIo = require('socket.io');
+
+const bucket = admin.storage().bucket();
+
+
 const express = require('express');
 const router = express.Router();
 const WebSocket = require('ws');
 
+let nameGame = null;
 var datos2;
+const wss = new WebSocket.Server({ port: 8082 }); //Juego
+const wsc = new WebSocket.Server({ port: 8081 }); //Cliente
 
-const wsc = new WebSocket.Server({port:8082},()=>{
-    console.log('server started')
-})
-
-const wss = new WebSocket.Server({port:8081},()=>{
-    console.log('server started')
-})
-
-wss.on('listening',()=>{
-    console.log('game is listening on port 8081');
-})
+wss.on('headers', (headers, request) => {
+    headers.push('Access-Control-Allow-Origin: *');
+    headers.push('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    headers.push('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+});
 
 wss.on('connection', (ws) => {
     console.log('Juego conectado al servidor WebSocket');
-    ws.send("JoaquinPutoAmo");
-    // Manejar los mensajes recibidos desde el cliente
-    ws.on('message', (mensaje1, mensaje2) => {
-        console.log('Mensaje recibido del juego: ' + mensaje1 + mensaje2);
+    /*
+    ws.on('puntuacionFinal', async (data) => {//Obtenemos la puntuación final del websocket
+        try{
+            const usuario = data.usr;//Nombre del usuario
 
-        try {
-            // Intentar analizar el mensaje JSON
-            const datosJ1 = JSON.parse(mensaje1);
-            const datosJ2 = JSON.parse(mensaje2);
-            
-            console.log('Datos recibidos: ', datosJ1, datosJ2);
-            
-            wsc.clients.forEach((client) => {
-                if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({
-                    data: datosJ1.puntuacionJ1,
-                    type: 'puntuacion',
-                    name: "Puntuacion J1",
-                    subtype: "Puntos",
-                    usr: ""}));
+            const puntuacion = data.valor;//Valor de la puntuación recibido
+            const puntuacionAGuardar = Math.log2(puntuacion); //Función matemática de puntuación final
+            console.log("Puntuación final para" + usuario + "es: " + puntuacionAGuardar);
+            console.log("PUNTUACIÓN FINAL RECIBIDA");
+        }catch(error){
+            console.error("error en puntuacion final");
+        }
+    });*/
 
-                client.send(JSON.stringify({
-                    data: datosJ1.tiempoTranscurrido,
-                    type: 'puntuacion',
-                    name: "Tiempo partida",
-                    subtype: "Segundos",
-                    usr: ""}));
-                
-                client.send(JSON.stringify({
-                    data: datosJ1.colisionesPala1,
-                    type: 'puntuacion',
-                    name: "Colisiones J1",
-                    subtype: "Colisiones",
-                    usr: ""}));
+    ws.on('message', (mensaje) => {
+        console.log('Mensaje recibido del juego: ' + mensaje);
+        let patata = JSON.parse(mensaje);
+        
+        if (patata.type == "juego"){//detectamos el juego
+            console.log("El juego es: "+ patata.data);
+            nameGame = patata.data;
+            nameGame = nameGame.toLowerCase();//se pasa a minúsuclas para prevenir problemas con firebase (Puede crear documentos de más)
+        }
 
-                client.send(JSON.stringify({
-                    data: datosJ2.puntuacionJ2,
-                    type: 'puntuacion',
-                    name: "Puntuacion J1",
-                    subtype: "Puntos",
-                    usr: ""}));
+        if (patata.type == "puntuacionFinal"){
+            console.log("Recibida la puntuacion final");
+            const puntuacion = Math.random() * 1000;
+            puntuacionAlgoritmo = Math.log10((puntuacion * 3)/(((1.5*1.5)*1)*1));//algoritmo de cálculo de puntuación final
+            console.log("puntos finales:" + puntuacionAlgoritmo);//Esto es la puntuación final
+            //Guardamos siempre al user alvaro: alvaro@mail.com
+            //console.log("ESTE JUEGO ES: " + nameGame);
+            const coleccion = db.collection('games').doc(nameGame).collection('matches').doc('0').collection('teams').doc('0').collection('scores')
+            coleccion.doc('alvaro@mail.com').get().then((docSnapshot) => {//revisamos si esta el user
+                if(docSnapshot.exists){//Si el user esta
+                    const data = docSnapshot.data();//obtenemos los datos
+                    if(data.hasOwnProperty('finalPoints')){//revisamos que exista el campo de puntuacion
+                        let puntosFinales = data['finalPoints'] + puntuacionAlgoritmo;//sumamos los puntos viejos a los nuevos
+                        return coleccion.doc('alvaro@mail.com').update({//Actualizamos la base de datos
+                            ['finalPoints']: puntosFinales
+                        });
+                    }else{//Si el campo no existe
+                        coleccion.doc('alvaro@mail.com').update({
+                            ['finalPoints']: puntuacionAlgoritmo
+                        });
+                        console.log("Datos añadidos")
+                    }
+                }else{//Si el usuario no está en la base de datos
+                    const addUsuario ={
+                        finalPoints: puntuacionAlgoritmo
+                    }
 
-                client.send(JSON.stringify({
-                    data: datosJ2.tiempoTranscurrido,
-                    type: 'puntuacion',
-                    name: "Tiempo partida",
-                    subtype: "Segundos",
-                    usr: ""}));
-                
-                client.send(JSON.stringify({
-                    data: datosJ2.colisionesPala2,
-                    type: 'puntuacion',
-                    name: "Colisiones J2",
-                    subtype: "Colisiones",
-                    usr: ""}));
+                    coleccion.doc('alvaro@mail.com').set(addUsuario)//Insertamos el nuevo documento
+                    console.log("Colección añadida");
                 }
-                });
+            })
+
+        }else{
             
-            // Enviar el mensaje JSON como tengo en la imagen del bloc de notas de Pepe al cliente
+            try {
+                const datos = JSON.parse(mensaje);
+                console.log('Datos recibidos: ', datos);
+        
+                wsc.clients.forEach((cliente) => {
+
+                    //console.log("CLIENTE: " + cliente);
+                
+                    cliente.send(JSON.stringify(datos)); 
+                });
 
         } catch (error) {
             console.error('Error al analizar el mensaje JSON:', error);
         }
+    }
+
+
+
+
     })
 
-    // Manejar la desconexión del cliente
+
     ws.on('close', () => {
         console.log('Juego desconectado del servidor WebSocket');
     })

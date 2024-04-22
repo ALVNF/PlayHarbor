@@ -1,0 +1,70 @@
+/* Asegurarse de que box-sizing se aplica a todos los elementos */
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+body{
+    background-color: black;
+    color: white;
+}
+
+
+#container{
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+#jugadores{
+    display: inline-block;
+    min-height: 300px;
+    vertical-align: top;
+    width: 25%;
+}
+
+#juego{
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    width: 41%;
+}
+
+#iniciar{
+    font-size: 0.8em;
+    margin-top: 2em;
+    padding: 0.7em;
+}
+
+.textoJugadores{
+    font-size: 1em;
+    margin-top: 0.7em;
+    padding: 0.1em;
+}
+
+label{
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#juego input {
+    background-color: black;
+    font-size: 3em; /* Asegúrate de que esto no sea más grande que el espacio del botón */
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    color: white; /* El color del texto para 'X' y 'O' */
+    text-align: center; /* Centrar texto horizontalmente */
+    vertical-align: middle; /* Centrar texto verticalmente */
+    line-height: 80px; /* Centrar texto verticalmente, debe ser igual a la altura del botón */
+  }
+
+#juego input:focus {
+    outline: none; /* Eliminar el outline cuando el botón está enfocado */
+}
+
+.botonJugador{
+    color: white;
+}
