@@ -5,7 +5,7 @@ datosPerfilTemplate.innerHTML = `
     <div class="profile">
         <a href="profile.html"><img src="../assets/battle_ready_warrior_icon.png" width="54" alt="Profile" id="usrImg"></a>
         <div id="userStatsContainer">
-            <div class="user-info" id="userName">Valhalla Records</div>
+            <div class="user-info" id="userName">Alvaro</div>
             <div id="lvlInfoContainer">
                 <span class="spanStats" id="userExp"><label class="lblProfileStats">Exp.</label> 1500</span>
                 <span class="spanStats" id="userLvl"><label class="lblProfileStats">Lvl.</label> 25</span>

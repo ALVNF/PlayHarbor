@@ -47,6 +47,7 @@ class ClassificationPlayers extends HTMLElement {
 updateLeaderboard(playersArray) {
   const sortedPlayers = playersArray.sort((a, b) => b.totalPoints - a.totalPoints);
   const rows = sortedPlayers.map((player, index) => {
+    const roundedPoints = Math.round(player.totalPoints);
     return `
       <tr>
         <td>${index + 1}</td>
@@ -54,7 +55,7 @@ updateLeaderboard(playersArray) {
           <img class="user-icon" src="${player.profilePicture}" alt="${player.user}">
           <span class="user-name">${player.user}</span>
         </td>
-        <td>${player.totalPoints}</td>
+        <td>${roundedPoints}</td> <!-- Puntos redondeados -->
       </tr>
     `;
   }).join('');
