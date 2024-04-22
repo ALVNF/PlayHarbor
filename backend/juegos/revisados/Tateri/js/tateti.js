@@ -333,7 +333,7 @@ function principal()
 							datos = {
 								usr: "Alvaro",
 								valor: victJ2.toString(),
-								type: "Turno",
+								type: "Victorias O",
 								team: "0",
 							}
 							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
@@ -341,11 +341,31 @@ function principal()
 							datos = {
 								usr: "Manuel",
 								valor: victJ2.toString(),
+								type: "Victorias O",
+								team: "0",
+							}
+							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
+							ws.send(JSON.stringify({type: "puntuacionFinal", data: datos }));
+
+
+							datos = {
+								usr: "Alvaro",
+								valor: "Alvaro",
 								type: "Turno",
 								team: "0",
 							}
 							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
 							ws.send(JSON.stringify({type: "puntuacionFinal", data: datos }));
+							datos = {
+								usr: "Manuel",
+								valor: "Alvaro",
+								type: "Turno",
+								team: "0",
+							}
+							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
+							ws.send(JSON.stringify({type: "puntuacionFinal", data: datos }));
+
+
 
 
 						}else if(sim.innerHTML== "O"){
@@ -354,7 +374,7 @@ function principal()
 							datos = {
 								usr: "Alvaro",
 								valor: victJ2.toString(),
-								type: "Turno",
+								type: "Victorias O",
 								team: "0",
 							}
 							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
@@ -363,7 +383,7 @@ function principal()
 							datos = {
 								usr: "Manuel",
 								valor: victJ2.toString(),
-								type: "Turno",
+								type: "Victorias O",
 								team: "1",
 							}
 							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
@@ -388,6 +408,23 @@ function principal()
 							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
 							ws.send(JSON.stringify({type: "puntuacionFinal", data: datos }));
 
+
+							datos = {
+								usr: "Alvaro",
+								valor: "Alvaro",
+								type: "Turno",
+								team: "0",
+							}
+							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
+							ws.send(JSON.stringify({type: "puntuacionFinal", data: datos }));
+							datos = {
+								usr: "Manuel",
+								valor: "Alvaro",
+								type: "Turno",
+								team: "0",
+							}
+							ws.send(JSON.stringify({type: "puntuacion", data: datos }));
+							ws.send(JSON.stringify({type: "puntuacionFinal", data: datos }));
 
 
 						} 	

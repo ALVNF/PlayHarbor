@@ -1,3 +1,13 @@
+const ws = new WebSocket("ws://localhost:8082");
+console.log("Soy el juego");
+let socketAbierto = new Promise((resolve, reject) => {
+  // Escuchar eventos de la conexión WebSocket
+  ws.onopen = function () {
+    console.log("\n\n\nJuego Conectado al servidor WebSocket\n\n\n");
+    ws.send(JSON.stringify({ data: "getClasificacion" }));
+  };
+});
+
 class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: 'MainScene' });
@@ -6,6 +16,7 @@ class MainScene extends Phaser.Scene {
         this.paddle1Hits = 0;
         this.paddle2Hits = 0;
         this.startTime = 0;
+        this.gameOver = false;
     }
 
     preload() {
@@ -99,16 +110,19 @@ class MainScene extends Phaser.Scene {
         this.score2++;
         this.scoreText2.setText(this.score2.toString());
         this.resetBall();
+        this.saveGameData();
     } else if (this.ball.x >= this.sys.game.config.width - 30) { // Si la pelota pasa por la posición de la paleta derecha
         this.score1++;
         this.scoreText1.setText(this.score1.toString());
         this.resetBall();
+        this.saveGameData();
     }
 
         // Finalizar el juego si algún jugador alcanza 10 puntos
-        if (this.score1 >= 10 || this.score2 >= 10) {
+        if (this.score1 >= 10 || this.score2 >= 10 && !this.gameOver) {
+            this.saveGameDataFinal();
             this.endGame();
-            
+            this.gameOver = true;
         }
     }
 
@@ -132,34 +146,74 @@ class MainScene extends Phaser.Scene {
         // Calcula el tiempo total de juego
         const totalTime = Date.now() - this.startTime;
 
-        // Envía los datos al backend aquí
-        this.sendGameData({
-            score1: this.score1,
-            score2: this.score2,
-            paddle1Hits: this.paddle1Hits,
-            paddle2Hits: this.paddle2Hits,
-            totalTime: totalTime
-        });
-
         // Muestra un mensaje de fin de juego
         let gameOverText = this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Game Over', { fontSize: '64px', fill: '#FFF' }).setOrigin(0.5);
-       
-    }
+    }  
+    
+    saveGameData() {
+        // Crea un objeto JSON con la información del juego
+            var datos = {
+                valor: this.score1,
+                type: 'Puntuacion J1',
+                usr: "Alvaro",
+                team: "0"
+            };
+            ws.send(JSON.stringify({ type: "puntuacion", data:datos}));
+            var datos = {
+                valor: this.score2,
+                type: 'Puntuacion J2',
+                usr: "Manuel",
+                team: "1"
+            };
+            ws.send(JSON.stringify({ type: "puntuacion", data:datos}));
+            
+            var datos =  {
+                valor: (Date.now() - this.startTime) / 1000, // Tiempo transcurrido en segundos
+                type: 'Tiempo partida',
+                usr: "Alvaro",
+                team: "0"
+            };
+            ws.send(JSON.stringify({ type: "puntuacion", data:datos}));
+            
+        
+        
+        if (ws.readyState === WebSocket.OPEN) {
+            //ws.send(JSON.stringify({ type: "puntuacion", data:jsonData}));
 
-    sendGameData(data) {
-        // Implementa la lógica para enviar los datos al backend aquí
-        console.log('Data sent to server:', data);
-        // Ejemplo:
-        // fetch('/api/game-data', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(data),
-        // })
-        // .then(response => response.json())
-        // .then(data => console.log(data))
-        // .catch((error) => console.error('Error:', error));
+          } else {
+            console.log('WebSocket no está abierto.');
+          }
+    }
+    saveGameDataFinal() {
+        // Crea un objeto JSON con la información del juego
+        var datos = {
+            valor: this.score1,
+            type: 'Puntuacion J1',
+            usr: "Alvaro",
+            team: "0"
+        };
+        ws.send(JSON.stringify({ type: "puntuacionFinal", data:datos}));
+        var datos = {
+            valor: this.score2,
+            type: 'Puntuacion J2',
+            usr: "Manuel",
+            team: "1"
+        };
+        ws.send(JSON.stringify({ type: "puntuacionFinal", data:datos}));
+        
+        var datos =  {
+            valor: (Date.now() - this.startTime) / 1000, // Tiempo transcurrido en segundos
+            type: 'Tiempo partida',
+            usr: ""
+        };
+        ws.send(JSON.stringify({ type: "puntuacionFinal", data:datos}));
+    
+        if (ws.readyState === WebSocket.OPEN) {
+            //ws.send(JSON.stringify({ type: "puntuacionFinal", data: JSONfinal }));
+          } else {
+            console.log('WebSocket no está abierto.');
+          }
+        this.gameOver = true;
     }
 }
 

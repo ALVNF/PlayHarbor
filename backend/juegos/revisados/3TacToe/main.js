@@ -67,13 +67,13 @@ function colocar() {
       if (turno === 1 && boton.value === "") {
         boton.value = "X";
         boton.className = "botonJugador";
-        enviarPuntuacion('Alvaro', 'Alvaro', 'Turno', 0);
+        enviarPuntuacion('Alvaro', 'Manuel', 'Turno', 0);
         turno = 2;
         document.getElementById("turnoJugador").innerHTML = "Adelante " + jugador2.value;
       } else if (turno === 2 && boton.value === "") {
         boton.value = "O";
         boton.className = "botonJugador";
-        enviarPuntuacion('Alvaro', 'Manuel', 'Turno', 0);
+        enviarPuntuacion('Alvaro', 'Alvaro', 'Turno', 0);
         turno = 1;
         document.getElementById("turnoJugador").innerHTML = "Adelante " + jugador1.value;
       }
@@ -112,6 +112,7 @@ function revisar() {
         enviarPuntuacionFinal('Alvaro', puntuacionJugador1, 'Partidas Ganadas X', '0');
         enviarPuntuacion('Alvaro', puntuacionJugador2, 'Partidas Ganadas O', '0');
         enviarPuntuacionFinal('Alvaro', puntuacionJugador2, 'Partidas Ganadas O', '0');
+        enviarPuntuacion('Alvaro', "Alvaro", 'Turno', '0');
         comenzar();
       } else if (ganador === 'O') { // Asumiendo que 'O' es el Jugador 2
         puntuacionJugador2++; // Incrementa la puntuación para el jugador 2
@@ -120,6 +121,7 @@ function revisar() {
         enviarPuntuacionFinal('Alvaro', puntuacionJugador1, 'Partidas Ganadas X', '1');
         enviarPuntuacion('Alvaro', puntuacionJugador2, 'Partidas Ganadas O', '1');
         enviarPuntuacionFinal('Alvaro', puntuacionJugador2, 'Partidas Ganadas O', '1');
+        enviarPuntuacion('Alvaro', "Alvaro", 'Turno', '0');
         comenzar();
       }
       // Reiniciar el juego o manejar el fin del juego aquí
