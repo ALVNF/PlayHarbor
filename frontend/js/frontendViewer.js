@@ -362,7 +362,7 @@ function loadProfileData(){
     loadProfileInfo();
     //loadUserGames();
     //loadUserComments();
-    //loadUserAchievements();
+    loadUserAchievements();
 }
 
 function loadProfileInfo(){
@@ -376,13 +376,17 @@ function loadUserAchievements(){
     getLogrosGenerales().then((logros) => {
         console.log(`Logros Usuario:`);
         const loggedUser = localStorage.getItem('email');
+        let datos = JSON.parse(JSON.stringify(logros.data[loggedUser], null, 2));
 
-
-        let myMap = new Map(Object.entries(logros.data));
-        let arrayJSON = Array.from(logros.data.)
-        console.log(arrayJSON);
-        let user = arrayJSON.filter((element) => {element == loggedUser});
-        console.log(user);
-        //document.getElementById("achievementList").loadAchievements(logros);
+        const achieveList = document.getElementById("achievementList");
+        //console.log(datos);
+        for (const game in datos) {
+            for(const key in datos[game]){
+                let achievement = document.createElement("achievement-card");
+                achievement.loadAchievementCard(datos[game][key], key, game);
+                achieveList.appendChild(achievement);
+            }
+        }
+  
     });
 }
