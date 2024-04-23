@@ -14,12 +14,14 @@ const usuariosRutas = require('./backend/mi-proyecto-backend/api/usuarios');
 const authRutas = require('./backend/mi-proyecto-backend/api/auth');
 const juegosRutas = require('./backend/mi-proyecto-backend/api/juegos');
 const juegosLogros= require('./backend/mi-proyecto-backend/api/logros');
+const webJuegosRutas = require('./backend/mi-proyecto-backend/api/webSocket');
 //const mensajesRutas = require('./backend/mi-proyecto-backend/api/mensajes');
 
 app.use('/api', usuariosRutas);
 app.use('/api', authRutas);
 app.use('/api', juegosRutas);
 app.use('/api', juegosLogros);
+app.use('/api', webJuegosRutas);
 //app.use('/api', mensajesRutas);
 
 // Cargar clave privada y certificado para HTTPS
