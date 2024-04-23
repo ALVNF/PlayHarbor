@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/profile.css">
+
+    <!-- WebComponents -->
+    <script src="../webComponents/navMenu/navMenu.js"></script>
+    <script src="../webComponents/chat&Friends/chat&Friends.js"></script>
+    <script src="../webComponents/userChatItem/userChatItem.js"></script>
+    <script src="../webComponents/friendItem/friendItem.js"></script>
+    <script src="../webComponents/commentTag/commentTag.js"></script>
+    <script src="../webComponents/logros/logros.js"></script>
+    <script src="../webComponents/datosPerfil/datosPerfil.js"></script>
+    <script src="../webComponents/classificationPlayers/classificationPlayers.js"></script>
+    <script src="../webComponents/gameCard/gameCard.js"></script>
+    <script src="../webComponents/achievementCard/achievementCard.js"></script>
+
+    <!-- Backend Functionalities -->
+    <script src="../js/backendCallers.js"></script>
+    <script src="../js/frontendViewer.js"></script>
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
+
+</head>
+
+<body id="body" onload="loadProfileData()">
+
+    <header class="navbar">
+        <nav-menu></nav-menu>
+    </header>
+
+    <main id="main">
+        <section class="leftSection">
+            <datos-perfil id="datosPerfil"></datos-perfil>
+
+            <h2>Achievements</h2>
+            <div class="achievementsContainer">
+                <achievement-card></achievement-card>
+                <achievement-card></achievement-card>
+            </div>
+
+            <h2>Favourite Games</h2>
+            <game-card></game-card>
+
+            <h2>Best Global Players</h2>
+            <classification-players></classification-players>
+        </section>
+        <section class="rightSection">
+            <chatfriends-menu></chatfriends-menu>
+        </section>
+    </main>
+
+</body>
+
+</html>

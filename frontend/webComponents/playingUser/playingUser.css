@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 10px ;
+}
+
+.mainContainer h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+.player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+
+.player-order {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.player img {
+    width: 50px;
+    height: 50px;
+}
+
+.user-info-points h2 {
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0;
+}
+
+.user-info-points h3 {
+    color: #EB2C44;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    float: left;
+}
+
+.player span {
+    color: white;
+}
+
+.user-info {
+    margin-right: 10px;
+}
+
+.user-info-points {
+    margin-left: 10px;
+    line-height: 1.16;
+    position: relative;
+    margin-top: -5px;
+}

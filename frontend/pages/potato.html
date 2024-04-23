@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/potato.js"></script>
+    <script src="../js/backendCallers.js"></script>
+    
+    <script src="../js/frontendViewer.js"></script>
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+</head>
+<body>
+
+    <fieldset>
+        <legend>Funcionalidades sueltas</legend>
+        <button onclick="getPuntos()">Puntos jugadores (clasif juego y platform)</button>
+        <button onclick="getLogrosGenerales()">Logros por usr por juego</button>
+    </fieldset>
+    
+    <form id="formularioJuego" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Formulario inserción juego</legend><br>
+            <input type="text" id="txtNombre" placeholder="Nombre"><br>
+            <textarea placeholder="Descripción" id="txtDescripcion"></textarea>
+            <textarea placeholder="Comentario" id="txtComentario"></textarea><br>
+            <input type="text" placeholder="Ingrese la URL aquí..." id="urlInput" ><br>
+            <br><label>Plataformas: </label><br>
+            <input type="checkbox" class="plataforma" value="PC"><label>PC</label>
+            <input type="checkbox" class="plataforma" value="Movil"><label>Movil</label>
+            <br><label>Tags: </label><br>
+            <input type="checkbox" class="tags" value="boardGame"><label>Juego de mesa</label>
+            <input type="checkbox" class="tags" value="arcadeGame"><label>Arcade</label><br>
+            <label>Portada: </label><input type="file" name="portada" id="imgPortada">
+            <label>Imágenes: </label><input type="file" name="imagenes" id="imgsMuestra" multiple>
+            <br><label>Juego (archivo zip): </label><input type="file" name="juego" id="juego">
+    
+        </fieldset>
+        <fieldset>
+            <legend>"Guía de estilo"</legend>
+        </fieldset>
+        <button type="button" id="enviarBtn" onclick="subirJuego()">Enviar</button>
+    </form>
+    
+
+    <fieldset>
+        <legend>Chat</legend>
+        <h1>Bienvenido, <span id="userName"></span></h1>
+        <button id="logoutButton">Cerrar Sesión</button>
+        <button id="editProfileButton">Editar Perfil</button> <!-- Botón para editar perfil -->
+
+        <!-- Área del chat -->
+        <div id="chatContainer">
+            <div id="messages"></div>
+            <input type="text" id="messageInput" placeholder="Escribe tu mensaje aquí...">
+            <button id="sendButton">Enviar</button>
+        </div>
+  
+    </fieldset>
+    <script src="../js/globalChat.js"></script>
+</body>
+</html>

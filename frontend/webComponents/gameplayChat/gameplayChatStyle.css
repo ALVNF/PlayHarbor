@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+/* ScrollBar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #353f5a;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #EB2C44;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff304c;
+  }
+.right-column {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    background-color: #161B21;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 400px;
+    max-width: 250px;
+}
+
+.right-column h1 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+hr{
+    width: 100%;
+    margin-left: 10px;
+    border: solid 1px #2B3137;
+}
+
+.username {
+    color: #EB2C44;
+    font-size: 14px;
+}
+
+.message-content {
+    font-size: 14px;
+}
+
+.chatContainer{
+    display: flex;
+    flex-direction: column;
+    height: 82%;
+    justify-content: space-between;
+    padding-left: 20px;
+}
+
+.chatList{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    height: 82%;
+}
+
+.chat {
+    text-align: left;
+    margin-top: 10px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #0D1017;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+footer button {
+    background-color: #0D1017;
+    border: none;
+    border-radius: 10px;
+}
+
+#send-button img{
+    width: 30px;
+    height: 30px;
+}
+
+footer input {
+    flex: 1;
+    padding-left: 10px;
+    border: none;
+    background-color: #0D1017;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.messageTime{
+    font-size: 12px;
+    color: #6E6E6E;
+}

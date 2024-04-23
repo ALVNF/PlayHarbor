@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload - PlayHarbor</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/uploadGameStyle.css">
+
+    <!-- JavaScript -->
+    <script src="../js/potato.js"></script>
+    <script src="../js/frontendViewer.js"></script>
+    <script src="../js/backendCallers.js"></script>
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
+
+    <!-- WebComponents -->
+    <script src="../webComponents/navMenu/navMenu.js"></script>
+    <script src="../webComponents/tagSelector/tagSelector.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <nav-menu></nav-menu>
+    </header>
+
+    <h1>Upload your new <span id="titleColor">Game</span></h1>
+
+    <section id="topSection">
+        <div class="verticalAlign">
+            <span>Game Cover:</span>
+            <div class="coverContainer">
+                <img src="../assets/upload-image.svg" id="imgPlaceHolder">
+                <img src="" id="imgCover" style="display: none;">
+                <label id="uploadLbl">Upload here your game cover</label>
+                <input type="file" id="coverImg" name="fileElem" multiple accept="image/*" style="display: none;"/>
+                <button onclick="uploadCover()" id="uploadBtn">Upload <strong>GameCover</strong></button>
+            </div>
+        </div>
+
+        <div class="gameInfoContainer">
+            <div id="authorInfo">
+                <div class="infoSection">
+                    <label>Game Title:</label>
+                    <input type="text" id="txtGameName" placeholder="Enter the game title here...">
+                </div>
+    
+                <div class="infoSection">
+                    <label>Author:</label>
+                    <input type="text" id="txtAuthorName" placeholder="Enter the author name here...">
+                </div>
+            </div>
+
+            <div class="infoSection">
+                <label>Game Tags:</label>
+                <div class="tagList" id="tagList"></div>
+                
+                <button id="addTagBtn" onclick="showTagSelector()">+ New Tag</button>
+            </div>
+
+            <div id="gameDescriptionContainer">
+                <label>Game Description:</label>
+                <textarea placeholder="Enter the game description here..." id="txtDescripcion"></textarea>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="gameImageSection">
+        <div id="imageSection">
+            <span>Game Images: </span>
+            <div class="imagesContainer">
+                <img src="../assets/upload-image.svg" id="gamePlaceHolder">
+                <div id="gallery"></div>
+                <p id="gameLbl">Upload one or multiple images of your game. Those could be a banner and a few gameplay screenshots.</p>
+                <input type="file" id="gameImages" name="fileElem" multiple accept="image/*" style="display: none;" multiple/>
+                <button onclick="uploadGameImages()" id="multipleImgBtn">Upload <strong>Game Images</strong></button>
+            </div>
+        </div>
+
+        <div id="videoContainer">
+            <span>Gameplay video or trailer:</span>
+            <label>Provide a link to YouTube</label>
+            <input type="text" id="videoURL" placeholder="Enter the YouTube link here...">
+        </div>
+    </section>
+
+    <section id="pricingAndFilesSection">
+
+        <div class="pricingContainer">
+            <label>Pricing</label>
+            <p>People will see an option under the play button for donations. If you set a certain ammount to pay, this option will be shown on the play button</p>
+            
+            <div id="pricesContainer">
+                <div class="priceInput" >
+                    <input type="radio" id="donationRadio" name="pricing" value="donation" checked>
+                    <label for="donationRadio"> 0€ or Donate</label>
+                </div>
+                <div class="priceInput">
+                    <input type="radio" id="paidRadio" name="pricing" value="paid">
+                    <label for="paidRadio"> Paid</label>
+                </div>
+
+                <div class="priceInput">
+                    <input type="radio" id="freeRadio" name="pricing" value="free">
+                    <label for="freeRadio"> No Payments</label>
+                </div>               
+                
+            </div>
+
+            <span id="suggestion"><label>Suggested donation</label> - Default donating ammount</span>
+            <input type="text" placeholder="2,00 €" id="suggestionInput">
+
+        </div>
+
+        <div class="UploadsContainer">
+            <label>Uploads</label>
+            <span>Click the button and upload your <strong>webGL</strong> files in a <strong>zip folder</strong></span>
+            <input type="file" name="game" id="gameFiles" style="display: none;" accept=".zip">
+            <button onclick="document.getElementById('gameFiles').click()">Upload Files</button>
+        </div>
+    </section>
+
+    <section id="submitSection">
+        <div class="moderatorContainer">
+            <label>Moderator Context</label>
+            <textarea id="txtComentario" placeholder="Writte here all usefull information about your game, with more context it will be easier and faster for the modreators to accept your game"></textarea>
+        </div>
+        <div class="sendingContainer">
+            <h2>Are you <strong>Ready?</strong></h2>
+            <label>Check everything before submiting</label>
+            <button onclick="subirJuego()">Send Request</button>
+        </div>
+    </section>
+
+</body>
+</html>

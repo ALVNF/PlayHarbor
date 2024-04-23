@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Harbor - GamePlay</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/gameplayStyle.css">
+
+    <!-- WebComponents -->
+    <script src="../webComponents/navMenu/navMenu.js"></script>
+    <script src="../webComponents/pointsStatusBar/pointsStatusBar.js"></script>
+    <script src="../webComponents/gameplayChat/gameplayChat.js"></script>
+    <script src="../webComponents/playingUser/playingUser.js"></script>
+
+    <!-- Backend Functionalities -->
+    <script src="../js/backendCallers.js"></script>
+    <script src="../js/puntuacion.js"></script>
+    <!-- <script src="../js/globalChat.js"></script> -->
+    <script src="../js/frontendViewer.js"></script>
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+
+
+</head>
+
+<body id="body" onload="loadGameScreen()">
+    <header>
+        <nav-menu></nav-menu>
+    </header>
+    
+    <div class ="container">
+        <div class="left-column">
+            <div class="buttonsContainer">
+                <button id="closePage" class="btnManager" onclick="returnToMain()">X</button>
+                <button id="fullScreenBtn" class="btnManager" onclick="augmentScreen()"><img src="../assets/icons/moreSize.svg"></button>
+            </div>
+            <iframe id="contenedorJuego" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                
+            </iframe>
+            <points-bar></points-bar>
+        </div>
+
+        <div class="right-column">
+            <div class="inGamePointsContainer">
+                <h1>In Game Points</h1>
+                <hr>
+                <div class="playingUsersList">
+                    <playing-user></playing-user>
+                </div>
+            </div>
+            <gameplay-chat></gameplay-chat>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+*{
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.imageContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 61vw;
+    margin-top: 50px;
+    margin-left: -50px;
+    background-color: #161B21;
+    gap: 20px;
+}
+
+.mediumImage{
+    width:600px;
+    height: 100%;
+}
+
+.gameDay p {
+    width: 300px;
+    font-size: 13px;
+    color: #a4a4a4; /* Color de texto gris */
+}
+
+.gameDay a {
+    color: #4111bb;
+    
+}
+.textGame{
+    width: 340px;
+}
+
+
+#btnPlayInicio{
+    margin-top: 20px;
+    width: 280px;
+    height: 50px;
+    background-color: #EB2C44;
+    color: white;
+    font-size: 25px;
+
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+#btnPlayNow{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 15px;
+    background-color:#2B3347;;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+}
+
+#btnPlayNow:hover{
+    background-color: #202635;
+}
+
+#btnPlayNow:active{
+    background-color: #353f5a;
+}
+
+.tagContainer{
+    background-color: #2B3347;
+    padding: 4px 10px ;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 13px;
+}
+.tagSupport{
+    margin-top: 20px;
+    margin-bottom: 60px;
+}

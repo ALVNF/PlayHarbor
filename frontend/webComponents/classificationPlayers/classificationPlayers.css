@@ -1,0 +1,57 @@
+:host {
+    --header-bg-color: #20232a;
+    --row-hover-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #c0c0c0;
+    font-family: 'IBM Plex Sans';
+  }
+  
+  .table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: var(--header-bg-color);
+    color: var(--text-primary);
+  }
+
+  .table th, .table td {
+    padding: 10px;
+    text-align: middle;
+    border-bottom: 1px solid #333;
+  }
+
+  .table th {
+    letter-spacing: 0.07em;
+    color: #697DAB;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  .table td {
+    font-size: 1em;
+    text-align: center;
+  }
+
+  .table tr:hover {
+    background-color: var(--row-hover-color);
+  }
+
+  .table .rank {
+    font-weight: bold;
+  }
+
+  .table .user-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .table .user-name {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .table .points {
+    font-weight: bold;
+  }

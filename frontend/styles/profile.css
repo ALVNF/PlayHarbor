@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+
+/* ScrollBar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #353f5a;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #EB2C44;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff304c;
+  }
+
+
+*{  
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #0D1017;
+    color:white;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin: 0px;
+}
+
+.leftSection{
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    width: 100%;
+}
+
+.leftSection h1{
+    font-size: 40px;
+    font-weight: 400;
+}
+
+
+
+.achievementsContainer{
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}

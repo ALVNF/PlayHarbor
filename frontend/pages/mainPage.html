@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - PlayHarbor</title>
+    <link rel="stylesheet" href="../styles/mainPage.css">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    
+    <!-- WebComponents -->
+    <script src="../webComponents/navMenu/navMenu.js"></script>
+    <script src="../webComponents/chat&Friends/chat&Friends.js"></script>
+    <script src="../webComponents/userChatItem/userChatItem.js"></script>
+    <script src="../webComponents/friendItem/friendItem.js"></script>
+    <script src="../webComponents/gamesFilter/gamesFilter.js"></script>
+    <script src="../webComponents/imageBody/imageBody.js"></script>
+
+    <script src="../webComponents/tag/tag.js"></script>
+    <script src="../webComponents/gameCard/gameCard.js"></script>
+
+    <!-- JavaScript -->
+    <script src="../js/backendCallers.js"></script>
+    <script src="../js/frontendViewer.js"></script>
+    <script src="../librerias/jquery-1.12.4.min.js"></script>
+
+</head>
+<body onload="loadContent()">
+    <header class="navbar">
+        <nav-menu></nav-menu>
+    </header>
+
+    <main id="main">
+        <section class="leftSection">
+            <games-filter id="gameFilter"></games-filter>
+        </section>
+
+        <section class="middleSection"> 
+            <image-body class="imagenContentBody"></image-body>
+            <h2 class="titulo">Action RPG</h2>
+            <h4 class="subtitulo">click here for more</h4>
+            <div class="gridLayoutCardContainer" id="gameList"></div>
+        </section>
+
+        <section class="rightSection">
+            <chatfriends-menu></chatfriends-menu>
+        </section>
+    </main>
+</body>
+</html>
