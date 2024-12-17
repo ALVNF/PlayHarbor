@@ -23,6 +23,18 @@ Este proyecto ha sido desarrollado para la asignatura de **Proyecto Integral de 
 
 ---
 
+## 🕹️ **Juegos Personalizados y Rankings**  
+
+- 🎨 **Subida de juegos personalizados**: Los usuarios tienen la posibilidad de **subir y compartir** los juegos que desarrollan en la plataforma, fomentando la creatividad y el talento de la comunidad.  
+
+- 👾 **Juegos creados por el equipo**: Los juegos que puedes disfrutar actualmente en **PlayHarbor** han sido desarrollados por nuestro equipo, asegurando calidad y una experiencia fluida.  
+
+- 🏆 **Cálculo de puntuaciones y rankings**:  
+   - El sistema de puntuaciones y los **rankings** globales han sido implementados por nuestro equipo, permitiendo una **competencia justa y emocionante** entre los jugadores.  
+   - Los rankings se actualizan automáticamente para que siempre puedas ver quién lidera las tablas de clasificación.
+     
+---
+
 ## 🎥 **Video Demostrativo**  
 
 A continuación, puedes ver un video demostrativo que muestra cómo funciona **PlayHarbor** y sus principales características:  
